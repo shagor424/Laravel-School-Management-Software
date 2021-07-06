@@ -7,17 +7,17 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row ">
           <div class="col-sm-6">
-            <h1 style="color: #800080"><b>
+            {{-- <h1 style="color: #800080"><b>
 
              
 
-          </b></h1>
+          </b></h1> --}}
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item active" style="color: green">Salary Details</li>
             </ol>
           </div> 
@@ -38,11 +38,10 @@
        <section class="col-md-12">
            
            <div class="card">
-              <div class="card-header" style="background-color: #ec7063
-">
-                <h5 style="color:   black"><b>
+              <div class="card-header" style="background-color: #605ca8;color: white;padding: 5px">
+                <h5 ><b>
                  Employee Salary Increment Details Report
-                  <a  href="{{route('employees.salary.view')}}" class="btn btn-success btn-sm float-right"><i class="fa fa-list"> Salary Increment List</i></a>
+                  <a  href="{{route('employees.salary.view')}}" class="btn btn-warning  float-right"><i class="fa fa-list"> Salary Increment List</i></a>
                </b> </h5>
               </div> 
                <div class="card-body">
@@ -50,7 +49,7 @@
                   <br/>
                 <table class=" table-sm table table-bordered table-hover">
                   <thead>
-                    <tr style="background-color: #FACC2E">
+                    <tr style="background-color: #001f3f;color: white">
                       <th>SL</th>
                       <th>Employee ID</th>
 
@@ -65,7 +64,7 @@
                   </thead>
                   <tbody>
                     @foreach($salary as $key=>$value)
-                    <tr style="background-color: #A7B8CA">
+                    <tr >
                       @if($key=="0")
                       <td style="color: red" class="text-center" colspan="9"><strong>Joining Salary:   {{$value->previous_salary}}</strong></td>
                       @else

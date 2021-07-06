@@ -7,9 +7,9 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row ">
           <div class="col-sm-6 of">
-            <h1 style="color: #800080"><b>
+            {{-- <h1 style="color: #800080"><b>
 
               @if(isset($editdata))
               Edit Assign Subject
@@ -18,11 +18,11 @@
               @endif
 
 
-          </b></h1>
+          </b></h1> --}}
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item active" style="color: green">Fee Amount</li>
             </ol>
           </div> 
@@ -43,22 +43,22 @@
        <section class="col-md-12">
            
            <div class="card">
-              <div class="card-header">
-                <h5 style="color:   #a04000"><b>
+              <div class="card-header"style="background-color: #605ca8;color: white;padding: 5px">
+                <h5 ><b>
               @if(isset($editdata))
               Edit Assign Subject
               @else
               Add Assign Subject
               @endif
-                  <a  href="{{route('asssubs.student.asssub.view')}}" class="btn btn-success btn-sm float-right"><i class="fa fa-users"> Assign Subject List</i></a>
+                  <a  href="{{route('asssubs.student.asssub.view')}}" class="btn btn-warning  float-right"><i class="fa fa-copy"> Assign Subject List</i></a>
                </b> </h5>
               </div> 
-            <div class="card-body">
+            <div class="card-body" style="background-color:  #C2E7FC  ">
              <form method="post" action="{{route('asssubs.student.asssub.update',$editdata['0']->title_id)}}" id="myform">
 
               @csrf
               <div class="add_item">
-                <div class="form-row" style="background-color:   #e2e1bc  ">
+                <div class="form-row" >
 
                   <div class="form-group col-md-3">
                     <label style="color: #0e6251">Class Title Name</label>

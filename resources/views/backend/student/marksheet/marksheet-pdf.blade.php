@@ -3,17 +3,17 @@
 
 
 <!-- Content Wrapper. Contains page content -->
-  <div style="background-color: #A4A4A4" class="content-wrapper">
+  <div  class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h3 style="color:  #117a65"><strong>Manage  Mark Sheet</strong></h3>
+            {{-- <h3 style="color:  #117a65"><strong>Manage  Mark Sheet</strong></h3> --}}
           </div><!-- /.col -->
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item active">Mark Sheet</li>
             </ol>
           </div>
@@ -34,9 +34,8 @@
           <section class="col-md-12">
            
            <div class="card">
-              <div style="background-color:  #f4d03f
-;color: black" class="card-header">
-                <h5 style="color:  black "><b>Student Mark Sheet</b>
+              <div  class="card-header"style="background-color: #605ca8;color: white;padding: 5px">
+                <h5 ><b>Student Mark Sheet</b>
                 </h5>
               </div>
 

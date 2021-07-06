@@ -7,13 +7,13 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row ">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage Password</h1>
+            {{-- <h1 class="m-0 text-dark">Manage Password</h1> --}}
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item active">Change Password</li>
             </ol>
           </div> 
@@ -34,9 +34,9 @@
        <section class="col-md-6 offset-md-3">
            
            <div class="card">
-              <div class="card-header">
+              <div class="card-header" style="background-color: #605ca8;color: white;padding: 5px">
                 <h5>Change Password
-                  <a  href="{{route('profiles.view')}}" class="btn btn-success btn-sm float-right"><i class="fa fa-users"> Your Profile</i></a>
+                  <a  href="{{route('profiles.view')}}" class="btn btn-warning  float-right"><i class="fa fa-users"> Your Profile</i></a>
                 </h5>
               </div> 
             <div class="card-body">

@@ -7,13 +7,13 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage Employee Monthly Salary</h1>
+            
           </div><!-- /.col -->
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item active">Employee Monthly salary</li>
             </ol>
           </div>
@@ -36,8 +36,8 @@
             <div class="row">
               <div class="col-12">
            <div class="card">
-              <div class="card-header" style="background-color: #f4d03f">
-                <h5 style="color:  black; "><b>Select Date </b>
+              <div class="card-header" style="background-color: #605ca8;color: white;padding: 5px">
+                <h5 ><b>Select Date </b>
                  
                 </h5>
               </div> 
@@ -58,7 +58,7 @@
               <script type="text/x-handlebars-template" id="document-template" >
                 <table class="table-sm table-bordered table-striped" style="width:100%">
                   <thead>
-                    <tr>
+                    <tr style="background-color: #001f3f;color: white">
                       @{{{thsource}}}
                     </tr>
                   </thead>

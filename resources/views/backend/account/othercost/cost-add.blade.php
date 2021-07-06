@@ -7,9 +7,9 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row ">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage Other Cost</h1>
+            {{-- <h1 class="m-0 text-dark">Manage Other Cost</h1> --}}
           </div><!-- /.col -->
 
             
@@ -36,7 +36,7 @@
           <section class="col-md-8 offset-md-2">
            
            <div class="card">
-              <div class="card-header">
+              <div class="card-header"style="background-color: #605ca8;color: white;padding: 5px">
                 <h5>
 
                   @if(isset($data))
@@ -44,7 +44,7 @@
               @else
               Add Other Cost
               @endif
-                  <a  href="{{route('accounts.cost.view')}}" class="btn btn-success btn-sm float-right"><i class="fa fa-list"> Other Cost List</i></a>
+                  <a  href="{{route('accounts.cost.view')}}" class="btn btn-warning  float-right"><i class="fa fa-list"> Other Cost List</i></a>
                 </h5>
               </div> 
             <div class="card-body">

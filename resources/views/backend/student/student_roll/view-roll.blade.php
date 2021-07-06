@@ -3,17 +3,17 @@
 
 
 <!-- Content Wrapper. Contains page content -->
-  <div style="background-color: #A4A4A4" class="content-wrapper">
+  <div  class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row">
           <div class="col-sm-6">
-            <h3 style="color:  #117a65"><strong>Manage  Students Roll</strong></h3>
+            {{-- <h3 style="color:  #117a65"><strong>Manage  Students Roll</strong></h3> --}}
           </div><!-- /.col -->
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item active">Student Roll</li>
             </ol>
           </div>
@@ -34,16 +34,15 @@
           <section class="col-md-12">
            
            <div class="card">
-              <div style="background-color:  #f4d03f
-;color: black" class="card-header">
-                <h5 style="color:  black "><b>Roll Generate</b>
+              <div  class="card-header" style="background-color: #605ca8;color: white;padding: 5px">
+                <h5><b>Roll Generate</b>
                   
                 </h5>
               </div> 
               <div class="card-body">
                 <form method="POST" action="{{route('students.roll.store')}}" id="myform">
                   @csrf
-                  <div style="background-color:  #b2babb " class="form-row">
+                  <div  class="form-row">
                     
                     <div class="form-group col-md-2">
                     <label for="class_id">Clas Name <font style="color: red">*</font> </label>
@@ -106,13 +105,13 @@
                    <br/><br/>
                   <div class="row d-none" id="roll_generate">
                   <div class="col-md-12">
-                    <table class="table-sm table-bordered table-striped dt-responsive" style="width: 100%">
+                    <table class="table-sm table-bordered  dt-responsive" style="width: 100%">
                       <thead>
-                        <tr style="text-align: center;">
+                        <tr style="background-color: #001f3f;color: white">
                           <th>ID</th>
                           <th>Student Name</th>
                           <th>Father Name</th>
-                          <th>Class Roll</th>
+                          <th class="text-center">Class Roll</th>
                         </tr>
                       </thead>
                       <tbody id="roll-generate-tr">
@@ -182,7 +181,7 @@
         '<td>'+v.student.id_no+'<input type="hidden" name="student_id[]" value="'+v.student_id+'"></td>'+
         '<td>'+v.student.name+'</td>'+
         '<td>'+v.student.fname+'</td>'+
-        '<td><input type="text" class="form-control" name="class_roll[]" value="'+v.class_roll+'"></td>'+
+        '<td><input type="text" class="form-control text-center" name="class_roll[]" value="'+v.class_roll+'"></td>'+
         '</tr>';
       });
       html = $('#roll-generate-tr').html(html);

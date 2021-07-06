@@ -7,9 +7,9 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row ">
           <div class="col-sm-6">
-            <h1 style="color: #800080"><b>
+            {{-- <h1 style="color: #800080"><b>
 
               @if(isset($editdata))
               Edit Designation
@@ -18,11 +18,11 @@
               @endif
 
 
-          </b></h1>
+          </b></h1> --}}
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item active" style="color: green">Designation</li>
             </ol>
           </div> 
@@ -43,14 +43,14 @@
        <section class="col-md-12">
            
            <div class="card">
-              <div class="card-header">
-                <h5 style="color:   #008B8B"><b>
+              <div class="card-header"style="background-color: #605ca8;color: white;padding: 5px">
+                <h5 ><b>
                    @if(isset($editdata))
               Edit Designation
               @else
               Add Designation
               @endif
-                  <a  href="{{route('desis.student.desi.view')}}" class="btn btn-success btn-sm float-right"><i class="fa fa-users"> Designation List</i></a>
+                  <a  href="{{route('desis.student.desi.view')}}" class="btn btn-warning float-right"><i class="fa fa-list"> Designation List</i></a>
                </b> </h5>
               </div> 
             <div class="card-body">

@@ -53,7 +53,7 @@
             $total_point = 0;
            
            foreach($allmarks as  $mark){
-           $count_fail = StudentMark:: where('year_id',$mark->year_id)->where('class_id',$mark->class_id)->where('exam_type_id',$mark->exam_type_id)->where('student_id',$mark->student_id)->where('mcq_marks','<','10')->get()->count();
+           $count_fail = App\Model\StudentMark:: where('year_id',$mark->year_id)->where('class_id',$mark->class_id)->where('exam_type_id',$mark->exam_type_id)->where('student_id',$mark->student_id)->where('mcq_marks','<','10')->get()->count();
             $get_mcqmarks = $mark->mcq_marks; 
             $get_creativemarks = $mark->creative_marks;
             $subtotal_marks =  $get_mcqmarks + $get_creativemarks;
@@ -94,15 +94,18 @@
             @endif
       </td>
       <td style="text-align: center;">
-        {{number_format((float)$avg_marks,2)}}
+        {{number_format((float)$total_marks,2)}}
       </td>
-      <td>
+       <td style="text-align:center;">{{number_format((float)$avg_marks,2)}}</td>
+      <td style="text-align:center;">
         @if($count_fail > 0)
             Fail
             @else
             {{$total_grade->remarks}}
             @endif
       </td>
+
+
     </tr>
     @endforeach
   </tbody>

@@ -7,17 +7,17 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row ">
           <div class="col-sm-6">
-            <h1 style="color: #800080"><b>
+            {{-- <h1 style="color: #800080"><b>
 
              
 
-          </b></h1>
+          </b></h1> --}}
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
               <li class="breadcrumb-item active" style="color: green">Add Employee Salary</li>
             </ol>
           </div> 
@@ -38,15 +38,15 @@
        <section class="col-md-12">
            
            <div class="card">
-              <div class="card-header">
-                <h5 style="color:   #008B8B">Employee Salary<b>
+              <div class="card-header"style="background-color: #605ca8;color: white;padding: 5px">
+                <h5 >Employee Salary<b>
                 
-                  <a  href="{{route('accounts.salary.view')}}" class="btn btn-success btn-sm float-right"><i class="fa fa-list"> Employee Salary List</i></a>
+                  <a  href="{{route('accounts.salary.view')}}" class="btn btn-warning  float-right"><i class="fa fa-list"> Employee Salary List</i></a>
                </b> </h5>
               </div> 
-              </div>
+              
 
-                <div class="card-body" style="background-color: lightgreen">
+                <div class="card-body" >
                <div class="form-row">
                 <div class="form-group col-md-4">
                   <label class="control-lablel">Date</label>
@@ -57,7 +57,7 @@
                   </div>
                  </div>
                 </div>
-
+                </div>
 
                 <div class="card-body">
               <div id="DocumentResults"></div>
@@ -66,7 +66,7 @@
                   @csrf
                 <table class="table-sm table-bordered table-striped" style="width:100%">
                   <thead>
-                    <tr>
+                    <tr style="background-color: #001f3f;color: white">
                       @{{{thsource}}}
                     </tr>
                   </thead>

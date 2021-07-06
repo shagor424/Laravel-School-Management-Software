@@ -7,13 +7,13 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row ">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage User</h1>
+            {{-- <h1 class="m-0 text-dark">Manage User</h1> --}}
           </div><!-- /.col -->
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item active">User</li>
             </ol>
           </div>
@@ -33,16 +33,16 @@
           <!-- Left col -->
           <section class="col-md-12">
            
-           <div class="card">
-              <div class="card-header">
+           <div class="panel"style="background:white;padding-bottom:5px">
+              <div class="panel-header" style="background-color: #605ca8;color: white;padding: 5px">
                 <h5>User List
-                  <a  href="{{route('users.add')}}" class="btn btn-success btn-sm float-right"><i class="fa fa-plus-circle"> Add User</i></a>
+                  <a  href="{{route('users.add')}}" class="btn btn-warning  float-right"><i class="fa fa-plus-circle float-right"> Add User</i></a>
                 </h5>
               </div> 
-            <div class="card-body">
-                <table id="example1" class="table table-bordered table-hover">
+            <div class="panel-body" style="margin:15px;">
+                <table id="example1" class="table  table-hover table-sm ">
                   <thead>
-                   <tr style="background-color: #641e16;color: white">
+                   <tr style="background-color: #001f3f;color: white">
                     <th>SL</th>
                     <th>ID</th>
                     <th>User Type</th>
@@ -57,7 +57,7 @@
                   </thead>
                   <tbody>
                     @foreach($alldata as $key => $user)
-                    <tr style="background-color:  #a1c880;border: 2px">
+                    <tr >
                       <td>{{$key+1}}</td>
                       <td>{{$user->id}}</td>
                       <td>{{$user->usertype}}</td>

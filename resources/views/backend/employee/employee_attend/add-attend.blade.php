@@ -7,9 +7,9 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row ">
           <div class="col-sm-6">
-            <h1 style="color: #800080"><b>
+            {{-- <h1 style="color: #800080"><b>
 
               @if(isset($editdata))
               Edit Employee Attendance
@@ -18,11 +18,11 @@
               @endif
 
 
-          </b></h1>
+          </b></h1> --}}
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item active" style="color: green">Add Attendance</li>
             </ol>
           </div> 
@@ -43,14 +43,14 @@
        <section class="col-md-12">
            
            <div class="card">
-              <div class="card-header">
-                <h5 style="color:   #008B8B"><b>
+              <div class="card-header"style="background-color: #605ca8;color: white;padding: 5px">
+                <h5 ><b>
                    @if(isset($editdata))
               Edit Employee Attendance
               @else
               Add Employee Attendance
               @endif
-                  <a  href="{{route('employees.attendance.view')}}" class="btn btn-success btn-sm float-right"><i class="fa fa-list"> Employee Attendance List</i></a>
+                  <a  href="{{route('employees.attendance.view')}}" class="btn btn-warning  float-right"><i class="fa fa-list"> Employee Attendance List</i></a>
                </b> </h5>
               </div> 
             
@@ -67,7 +67,7 @@
 
                 <table id="example1" class=" table-sm table table-bordered table-striped dt-responsive">
                   <thead>
-                  <tr style="background-color:  #f4d03f ;color: black">
+                  <tr style="background-color: #001f3f;color: white">
                     <th rowspan="2" class="text-center" style="vertical-align: middle;">SL</th>
                     <th rowspan="2" class="text-center" style="vertical-align: middle;">ID NO</th>
                     <th rowspan="2" class="text-center" style="vertical-align: middle;">Employee Name </th>
@@ -113,9 +113,9 @@
                 </table>
               
                  
-      <div class="form-group col-md-2">            
+      <div class="form-group col-md-12">            
     
-    <button type="submit"class="btn btn-primary" class="btn btn-block">{{(@$editdata)?'Update Employee Leave':'Add Employee Leave'}}</button>
+    <button type="submit"class="btn btn-primary float-right" class="btn btn-block">{{(@$editdata)?'Update Employee Leave':'Add Employee Leave'}}</button>
 
                   </div>
                 </div> 
@@ -129,7 +129,7 @@
 
                 <table id="example1" class=" table-sm table table-bordered table-striped dt-responsive">
                   <thead>
-                  <tr style="background-color:  #f4d03f ;color: black">
+                  <tr style="background-color: #001f3f;color: white">
                     <th rowspan="2" class="text-center" style="vertical-align: middle;">SL</th>
                     <th rowspan="2" class="text-center" style="vertical-align: middle;">ID NO</th>
                     <th rowspan="2" class="text-center" style="vertical-align: middle;">Employee Name </th>
@@ -138,9 +138,9 @@
                     <th colspan="3"class="text-center" style="vertical-align: middle;">Attendance Status </th>
                   </tr>
                   <tr>
-                    <th class="text-center btn present_all" style="display: table-cell;background-color:#114090;color: white ">Present </th>
-                    <th class="text-center btn leave_all" style="display: table-cell;background-color:#114090;color: white ">Leave </th>
-                    <th class="text-center btn absent_all" style="display: table-cell;background-color:#114090;color: white ">Absent </th>
+                    <th class="text-center btn present_all bg-warning" style="display: table-cell;color: white ">Present </th>
+                    <th class="text-center btn leave_all bg-warning" style="display: table-cell;color: white ">Leave </th>
+                    <th class="text-center btn absent_all bg-warning" style="display: table-cell;;color: white ">Absent </th>
                     
                   </tr>
                   </thead>

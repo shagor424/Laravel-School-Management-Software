@@ -7,9 +7,9 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row ">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage Grade Point</h1>
+            {{-- <h1 class="m-0 text-dark">Manage Grade Point</h1> --}}
           </div><!-- /.col -->
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -34,15 +34,15 @@
           <section class="col-md-12">
            
            <div class="card">
-              <div class="card-header">
-                <h5 style="color:  #FF5733 "><b>Grade Point List </b>
-                  <a  href="{{route('marksex.grade.add')}}" class="btn btn-success btn-sm float-right"><i class="fa fa-plus-circle"> Add Grade Point</i></a>
+              <div class="card-header"style="background-color: #605ca8;color: white;padding: 5px">
+                <h5 ><b>Grade Point List </b>
+                  <a  href="{{route('marksex.grade.add')}}" class="btn btn-warning  float-right"><i class="fa fa-plus-circle"> Add Grade Point</i></a>
                 </h5>
               </div> 
             <div class="card-body">
                 <table id="example1" class=" table-sm table table-bordered table-hover">
                   <thead>
-                  <tr style="background-color:  #f4d03f ;color: black">
+                  <tr style="background-color: #001f3f;color: white">
                     <th>SL</th>
                     <th>Grade</th>
                     <th> Grade Point</th>
@@ -67,8 +67,8 @@
                       
                     <td>
                       
-                    <a title="Edit" href="{{route('marksex.grade.edit',$value->id)}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
-                    <a title="Delete" id="delete" href="{{route('marksex.grade.delete',$value->id)}}" data-token="{{csrf_token()}}" data-id="{{$value->id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                    <a title="Edit" href="{{route('marksex.grade.edit',$value->id)}}" class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
+                    <a title="Delete" id="delete" href="{{route('marksex.grade.delete',$value->id)}}" data-token="{{csrf_token()}}" data-id="{{$value->id}}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                     
                       </td> 
                     </tr>

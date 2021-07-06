@@ -7,13 +7,13 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row ">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage Employee Salary</h1>
+            {{-- <h1 class="m-0 text-dark">Manage Employee Salary</h1> --}}
           </div><!-- /.col -->
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item active">Add Salary</li>
             </ol>
           </div>
@@ -34,15 +34,15 @@
           <section class="col-md-12">
            
            <div class="card">
-              <div class="card-header">
-                <h5 style="color:  #FF5733 "><b>Employee Salary List</b>
+              <div class="card-header"style="background-color: #605ca8;color: white;padding: 5px">
+                <h5 ><b>Employee Salary List</b>
                  
                 </h5>
               </div> 
             <div class="card-body">
                 <table id="example1" class=" table-sm table table-bordered table-hover">
                   <thead>
-                  <tr style="background-color:  #BFFF00 ;color: black">
+                  <tr style="background-color: #001f3f;color: white">
                     <th>SL</th>
                     <th>ID NO</th>
                     <th>Desig</th>
@@ -57,7 +57,7 @@
                   </thead>
                   <tbody>
                     @foreach($alldata as $key => $employee)
-                    <tr class="{{$employee->id}}"style="background-color:  #0B4C5F;border: 2px;color: white">
+                    <tr class="{{$employee->id}}">
                       <td>{{$key+1}}</td>
                       <td>{{$employee->id_no}}</td>
                       <td>{{$employee['designation']['name']}}</td>

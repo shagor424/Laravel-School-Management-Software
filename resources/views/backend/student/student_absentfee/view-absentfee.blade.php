@@ -3,17 +3,17 @@
 
 
 <!-- Content Wrapper. Contains page content -->
-  <div style="background-color: #A4A4A4" class="content-wrapper">
+  <div  class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6"> 
-            <h3 style="color:  #117a65"><strong>Manage Absent Fee</strong></h3>
+            {{-- <h3 style="color:  #117a65"><strong>Manage Absent Fee</strong></h3> --}}
           </div><!-- /.col -->
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item active">Absent Fee</li>
             </ol>
           </div>
@@ -34,9 +34,8 @@
           <section class="col-md-12">
            
            <div class="card">
-              <div style="background-color:  #f4d03f
-;color: black" class="card-header">
-                <h5 style="color:  black "><b>Absent Fee</b>
+              <div  class="card-header" style="background-color: #605ca8;color: white;padding: 5px">
+                <h5 ><b>Absent Fee</b>
                   
                 </h5>
               </div> 
@@ -98,7 +97,7 @@
                     </select>
                   </div>
                   <div class="form-group col-md-2" style="margin-top: 30px">
-                    <a id="search" class="btn btn-danger "> Students Search</a>
+                    <a id="search" class="btn btn-warning "> Students Search</a>
 
                    </div>
                  </div>
@@ -110,7 +109,7 @@
                   <script type="text/x-handlebars-template" id="document-template">
                     <table class="table-sm table-bordered table-striped" style="width:100%">
                       <thead>
-                        <tr>
+                        <tr style="background-color: #001f3f;color: white">
                           @{{{thsource}}}
                          </tr>
                          <tbody>

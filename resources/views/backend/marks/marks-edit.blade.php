@@ -3,17 +3,17 @@
  
 
 <!-- Content Wrapper. Contains page content -->
-  <div style="background-color: #A4A4A4" class="content-wrapper">
+  <div  class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row">
           <div class="col-sm-6">
-            <h3 style="color:  #117a65"><strong>Manage Students Marks Edit</strong></h3>
+            {{-- <h3 style="color:  #117a65"><strong>Manage Students Marks Edit</strong></h3> --}}
           </div><!-- /.col -->
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item active">Student Marks Edit</li>
             </ol>
           </div>
@@ -34,16 +34,15 @@
           <section class="col-md-12">
            
            <div class="card">
-              <div style="background-color:  #f4d03f
-;color: black" class="card-header">
-                <h5 style="color:  black "><b>Marks Edit</b>
+              <div  class="card-header"style="background-color: #605ca8;color: white;padding: 5px">
+                <h5 ><b>Marks Edit</b>
                   
                 </h5>
               </div> 
-              <div class="card-body">
+              <div class="card-body" {{-- style="background-color:#E6E6E6" --}}>
                 <form method="POST" action="{{route('marks.update')}}" id="myform">
                   @csrf
-                  <div style="background-color:  #b2babb " class="form-row">
+                  <div  class="form-row">
                     
                     <div class="form-group col-md-3">
                     <label for="class_id">Clas Name <font style="color: red">*</font> </label>
@@ -117,7 +116,7 @@
 
 
                   <div class="form-group col-md-3" style="margin-top: 30px">
-                    <a id="search" class="btn btn-danger btn-sm"> <strong style="color: white">Students Marks Edit Search</strong></a>
+                    <a id="search" class="btn btn-danger "> <strong style="color: white">Students Marks Edit Search</strong></a>
 
                    </div>
                  </div>
@@ -127,12 +126,12 @@
                   <div class="col-md-12">
                     <table class="table-sm table-bordered table-striped dt-responsive" style="width: 100%">
                       <thead>
-                        <tr style="text-align: center;">
+                        <tr style="background-color: #001f3f;color: white">
                           <th>ID</th>
                           <th>Student Name</th>
                           <th>Father Name</th>
-                          <th>Mcq Marks</th>
-                          <th>Creative Marks</th>
+                          <th class="text-center">Mcq Marks</th>
+                          <th class="text-center">Creative Marks</th>
                         </tr>
                       </thead>
                       <tbody id="marks-entry-tr">
@@ -212,9 +211,9 @@
         '<td>'+v.student.id_no+'<input type="hidden" name="student_id[]" value="'+v.student_id+'"><input type="hidden" name="id_no[]" value="'+v.student.id_no+'"></td>'+
         '<td>'+v.student.name+'</td>'+
         '<td>'+v.student.fname+'</td>'+
-        '<td><input type="text" class="form-control" name="mcq_marks[]"value="'+v.mcq_marks+'"></td>'+
+        '<td><input type="text" class="form-control text-center" name="mcq_marks[]"value="'+v.mcq_marks+'"></td>'+
         
-        '<td><input type="text" class="form-control" name="creative_marks[]"value="'+v.creative_marks+'"></td>'+
+        '<td><input type="text" class="form-control text-center" name="creative_marks[]"value="'+v.creative_marks+'"></td>'+
         '</tr>';
       });
       html = $('#marks-entry-tr').html(html);

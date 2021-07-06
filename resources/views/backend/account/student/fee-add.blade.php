@@ -7,9 +7,9 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row ">
           <div class="col-sm-6">
-            <h1 style="color: #800080"><b>
+           {{--  <h1 style="color: #800080"><b>
 
               @if(isset($editdata))
               Edit Student Fee
@@ -18,11 +18,11 @@
               @endif
 
 
-          </b></h1>
+          </b></h1> --}}
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
               <li class="breadcrumb-item active" style="color: green">Add Student Fee</li>
             </ol>
           </div> 
@@ -43,21 +43,21 @@
        <section class="col-md-12">
            
            <div class="card">
-              <div class="card-header">
-                <h5 style="color:   #008B8B"><b>
+              <div class="card-header"style="background-color: #605ca8;color: white;padding: 5px">
+                <h5 ><b>
                    @if(isset($editdata))
               Edit Student Fee
               @else
               Add Student Fee
               @endif
-                  <a  href="{{route('accounts.fee.view')}}" class="btn btn-success btn-sm float-right"><i class="fa fa-list"> Student Fee List</i></a>
+                  <a  href="{{route('accounts.fee.view')}}" class="btn btn-warning  float-right"><i class="fa fa-list"> Student Fee List</i></a>
                </b> </h5>
               </div> 
             
                 
              <div class="card-body">
                 
-                  <div style="background-color:  #b2babb " class="form-row">
+                  <div {{-- style="background-color:  #b2babb " --}} class="form-row">
                     
                     <div class="form-group col-md-3">
                     <label for="class_id">Clas Name <font style="color: red">*</font> </label>
@@ -131,7 +131,7 @@
 
 
                   <div class="form-group col-md-3" style="margin-top: 30px">
-                    <a id="search" class="btn btn-danger btn-sm pull-right"> <strong style="color: white">Students Fee Search</strong></a>
+                    <a id="search" class="btn btn-warning  pull-right"> <strong style="color: white">Students Fee Search</strong></a>
 
                    </div>
                  </div>
@@ -149,7 +149,7 @@
                   @csrf
                 <table class="table-sm table-bordered table-striped" style="width:100%">
                   <thead>
-                    <tr>
+                    <tr style="background-color: #001f3f;color: white">
                       @{{{thsource}}}
                     </tr>
                   </thead>
