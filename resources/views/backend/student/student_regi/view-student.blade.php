@@ -39,7 +39,7 @@
                   <a  href="{{route('students.regi.add')}}" class="btn btn-warning  float-right"><i class="fa fa-plus-circle"> Add Student</i></a></b>
                 </h5>
               </div> 
-              <div class="card-body"style="background-color:  #C2E7FC  ">
+              <div class="card-body"style="background-color:#E6E6E6">
                 <form method="get" action="{{route('students.stsearch')}}" id="myform">
                   <div  class="form-row">
                     

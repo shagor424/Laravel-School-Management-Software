@@ -394,6 +394,26 @@ $route = Route::current()->getName();
             </ul>
     </li>
 
+      <li class="nav-item has-treeview {{($prefix=='/payments')?'menu-open':''}}">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Payments 
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+
+            <ul type="background-color" class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('payments.student.add')}}" class="nav-link {{($route=='payments.student.add')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Student Payment</p> 
+                </a>
+              </li>
+
+        </ul>
+    </li>
+
 
      <li class="nav-item has-treeview {{($prefix=='/stuffattendances')?'menu-open':''}}">
             <a href="#" class="nav-link">

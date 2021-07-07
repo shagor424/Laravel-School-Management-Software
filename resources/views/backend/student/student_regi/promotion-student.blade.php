@@ -7,9 +7,9 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row">
           <div class="col-sm-6">
-            <h1 style="color: #800080"><b>
+            {{-- <h1 style="color: #800080"><b>
 
               @if(isset($editdata))
               Promotion  Student
@@ -18,12 +18,12 @@
               @endif
  
 
-          </b></h1>
+          </b></h1> --}}
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active" style="color: green">Add Student</li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+              <li class="breadcrumb-item active" style="color: green">Student Registration</li>
             </ol>
           </div> 
         </div><!-- /.row -->
@@ -43,17 +43,17 @@
        <section class="col-md-12">
            
            <div class="card">
-              <div class="card-header" style="background-color: #f39c12">
-                <h5 style="color:   #008B8B"><b>
+              <div class="card-header" style="background-color: #605ca8;color: white;padding: 5px">
+                <h5 ><b>
                    @if(isset($editdata))
-              Promotion Student
+               Student Promotion
               @else
-              Add Student
+              Student Registration
               @endif
-                  <a  href="{{route('students.regi.view')}}" class="btn btn-success btn-sm float-right"><i class="fa fa-list"> Student List</i></a>
+                  <a  href="{{route('students.regi.view')}}" class="btn btn-warning float-right"><i class="fa fa-list"> Student List</i></a>
                </b> </h5>
               </div> 
-            <div class="card-body">
+            <div class="card-body"style="background-color:#E6E6E6">
                 
               <form method="post" action="{{route('students.regi.promotion.store',$editdata->student_id)}}" id="myform"enctype="multipart/form-data">
                 @csrf
@@ -192,7 +192,7 @@
 
                   </div>
                 
-                <button type="submit"class="btn btn-block bg-gradient-danger float-right">{{(@$editdata)?'Promotion Student ':' Student Registration'}}</button>
+                <button type="submit"class="btn btn-block bg-gradient-danger float-right">{{(@$editdata)?'Student Promotion':' Student Registration'}}</button>
 
               </form>
 </div> 

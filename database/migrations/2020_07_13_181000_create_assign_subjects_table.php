@@ -19,8 +19,8 @@ class CreateAssignSubjectsTable extends Migration
              $table->integer('class_id');
              $table->integer('subject_id');
              $table->integer('group_id');
-            // $table->double('mcq_mark');
-            // $table->double('cv_mark');
+            $table->double('mcq_mark');
+            $table->double('cv_mark');
              $table->double('full_mark');
              $table->double('pass_mark');
              $table->double('subjective_mark');
