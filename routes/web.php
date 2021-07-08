@@ -220,7 +220,14 @@ Route::prefix('students')->group(function(){
 Route::prefix('payments')->group(function(){
     Route::get('payments/student/view','Backend\Payment\StudentPaymentController@viewpayment')->name('payments.student.view');
     Route::get('payments/student/add','Backend\Payment\StudentPaymentController@addpayment')->name('payments.student.add');
-    Route::get('payments/student/store','Backend\Payment\StudentPaymentController@storepayment')->name('payments.student.store');
+    Route::post('payments/student/store','Backend\Payment\StudentPaymentController@storepayment')->name('payments.student.store');
+     Route::get('payments/student/allview/{id}','Backend\Payment\StudentPaymentController@allview')->name('payments.student.allview');
+     Route::get('payments/student/pdf','Backend\Payment\StudentPaymentController@idbypdf')->name('payments.student.idbypdf');
+      Route::get('payments/student/delete/{id}','Backend\Payment\StudentPaymentController@delete')->name('payments.student.delete');
+      Route::get('payments/student/pending-list','Backend\Payment\StudentPaymentController@pendinglist')->name('payments.student.pendinglist');
+       Route::get('payments/student/approveview/{id}','Backend\Payment\StudentPaymentController@approveview')->name('payments.student.approveview');
+       Route::post('payments/student/approvestore/{id}','Backend\Payment\StudentPaymentController@approvestore')->name('payments.student.approvestore');
+  
   
 
 });

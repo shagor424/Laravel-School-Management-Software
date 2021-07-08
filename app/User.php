@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Model\Designation;
+use App\Model\StudentClass;
 use DB;
 use PDF;
 use App\Model\EmployeeSalary;
@@ -55,6 +56,17 @@ class User extends Authenticatable
  return $this->belongsTo(AssignStudent::class,'id','student_id');
 
  }
+
+  public function class(){
+ return $this->belongsTo(StudentClass::class,'class_id','id');
+
+ }
+
+  public function payment(){
+ return $this->hasMany(StudentPayment::class,'student_id','id');
+
+ }
+
 }
 
 

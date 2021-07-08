@@ -48,13 +48,13 @@
       </div>
     </div>
         <div class="col-sm-4">
-             <input type="text" name="payment_date" class="form-control datepicker" value="{{ $date }}"   placeholder="YYYY-MM-DD" data-validation="requierd"   id="payment_date">
-            @error('payment_date')
+             <input type="text" name="invoice_date" class="form-control text-center datepicker"    placeholder="YYYY-MM-DD" value="{{ $date }}" data-validation="requierd" id="invoice_date">
+            @error('invoice_date')
             <strong class="text-danger">{{$message}}</strong>
             @enderror
         </div>
 
-         <div class="col-md-2">
+       <div class="col-md-2">
    <div class="form-group">
         <label for="invoice_no" class="col-sm-12 control-label"> Invoice No <span class="text-danger">*</span></label>
       </div>
@@ -121,7 +121,7 @@
             <select name="feecat_id" class="form-control select2bs4" id="feecat_id">
                 <option value="">Select Fee Category</option>
                 @foreach($feecats as $feecat)
-                <option value="{{$feecat->id}}">{{$feecat->name}}</option>
+                <option value="{{$feecat->id}}">{{$feecat->cat_name}}</option>
                 @endforeach
             </select>
             @error('feecat_id')
@@ -173,8 +173,7 @@
       <thead>
         <tr style="background-color: #001f3f;color: white">
           <th width="30%">Name</th>
-          <th width="18%">Father Name</th>
-          <th width="10%">Mobile</th>
+          <th width="18%">Fee Category</th>
           <th width="5%" class="text-center">Time</th>
           <th width="11%" class="text-center">Amount</th>
           <th width="11%">SubTotal</th>
@@ -186,13 +185,12 @@
       </tbody>
       <tbody>
         <tr>
-          <td colspan="5">Discount</td>
+          <td colspan="4">Discount</td>
           <td class="text-right"><input type="text" name="discount_amount" id="discount_amount" class="form-control form-control-sm discount_amount text-right" placeholder="Enter Discount Amount"></td>
         </tr>
         <tr>
           <td colspan="2"></td>
          
-          <td></td>
           <td></td>
           <td></td>
            <td>
@@ -203,11 +201,11 @@
       </tbody>
     </table>
 <br>
- <!-- <div class="form-row">
+  <div class="form-row">
     <div class="form-group col-md-12">
       <textarea class="form-control" name="description" id="description" placeholder="Write Here Your Description"></textarea>
     </div>
-  </div>-->
+  </div>
 
   <div class="form-row">
     <div class="form-group col-md-3">
@@ -220,18 +218,19 @@
       <input type="text" name="paid_amount" class="form-control form-control-sm  paid_amount" id="paid_amount" placeholder="Enter Paid Amount" style="display: none">
     </div>
 
-    {{--  <div class="form-group col-md-9">
-      <select class="form-control form-control-sm select2bs4" name="student_id" id="student_id">
-        <option value="">Select Student</option>
+     <div class="form-group col-md-9">
+      <select class="form-control form-control-sm " name="student_id" id="student_id">
+        <option value="1">Select Student</option>
         @foreach($students as $student)
+        <option value="">Select Student</option>
         <option value="{{ $student->id }}">{{ $student->id_no }}--- {{ $student->name }} ---{{ $student->mobile }}</option>
         @endforeach
-        <option value="0">New Customer</option>
+        <option value="0">Select Student</option>
       </select>
-    </div> --}}
+    </div>
   </div>
 
-  {{-- <div class="form-row new_customer" style="display: none">
+    <div class="form-row new_customer" style="display: none">
 
      <div class="form-group col-sm-3">
       <input type="text" name="shop_name" id="shop_name" class="form-control form-control-sm" placeholder="Enter Shop Name">
@@ -247,8 +246,9 @@
     <div class="form-group col-sm-3">
       <input type="text" name="address" id="address" class="form-control form-control-sm" placeholder="Enter Address">
     </div>
-  </div> --}}
+  </div>
 
+  
     <div class="form-group">
         <div class="col-sm-12">
             <button style="font-size: 20px;font-weight: bold;" type="submit" class="btn btn-success btn-block pull-right" id="storebutton">Payment Submit</button>
@@ -277,7 +277,7 @@
 <tr class="delete_add-more_item" id="delete_add-more_item">
     <input type="hidden" name="invoice_date" value="@{{invoice_date}}">
     <input type="hidden" name="invoice_no" value="@{{invoice_no}}">
-    <input type="hidden" name="feecat_id" value="@{{feecat_id}}">
+   
     
     
 
@@ -285,17 +285,10 @@
          <input  type="hidden" name="student_id[]" value="@{{student_id}}">
          @{{name}}
       </td>
-     <td>
-         <input type="hidden" name="student_id[]" value="@{{fname}}">
-         @{{fname}}
-
-    </td>
-
       <td>
-         <input type="hidden" name="student_id[]" value="@{{mobile}}">
-         @{{mobile}}
-
-    </td>
+         <input  type="hidden" name="feecat_id[]" value="@{{feecat_id}}">
+         @{{cat_name}}
+      </td>
   
      <td>
          <input type="number" min="1" name="selling_quantity[]" value="1" class="form-control form-control-sm text-center selling_quantity">
@@ -317,13 +310,12 @@
   $(document).ready(function () {
   $(document).on("click",".addeventmore", function (){
     var invoice_date = $('#invoice_date').val();
+    var invoice_no = $('#invoice_no').val();
     var student_id = $('#student_id').val();
     var name = $('#student_id').find('option:selected').text();
-    // var feecat_id = $('#feecat_id').val();
-    // var feecat_name = $('#feecat_id').find('option:selected').text();
-    var fname = $('#fname').val();
-    var mobile = $('#mobile').val();
-
+    var feecat_id = $('#feecat_id').val();
+    var cat_name = $('#feecat_id').find('option:selected').text();
+   
 
 
     $('.notifyjs-corner').html('');
@@ -356,10 +348,9 @@
         invoice_no:invoice_no,
         student_id:student_id,
         name:name,
-        // feecat_id:feecat_id,
-        // feecat_name:name,
-        fname:fname,
-        mobile:mobile,
+        feecat_id:feecat_id,
+        cat_name:cat_name,
+      
 
         
       };
