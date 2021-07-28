@@ -122,4 +122,37 @@ class DefaultController extends Controller
      $stock = Product::where('id',$product_id)->first()->quantity;
      return response()->json($stock);
    } 
+
+
+    public function getname(Request $request){
+     $student_id = $request->student_id;
+     $name = User::where('id',$student_id)->first()->name;
+     return response()->json($name);
+   } 
+  
+ public function getfname(Request $request){
+     $student_id = $request->student_id;
+     $fname = User::where('id',$student_id)->first()->fname;
+     return response()->json($fname);
+   } 
+
+   public function getmname(Request $request){
+     $student_id = $request->student_id;
+     $mname = User::where('id',$student_id)->first()->mname;
+     return response()->json($mname);
+   } 
+  
+ public function getmobile(Request $request){
+     $student_id = $request->student_id;
+     $mobile = User::where('id',$student_id)->first()->mobile;
+     return response()->json($mobile);
+   } 
+
+   public function getid(Request $request){
+     $student_id = $request->student_id;
+     $id = User::where('id',$student_id)->first()->id;
+     return response()->json($id);
+   }
+
+
 }

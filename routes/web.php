@@ -383,9 +383,11 @@ Route::get('/get-stock', 'backend\DefaultController@getstock')->name('get-stock'
 Route::get('/get-warranty-time', 'backend\DefaultController@getwarrantytime')->name('get-warranty-time');
 
 Route::get('/get-product-name', 'backend\DefaultController@getproduct')->name('get-product');
-
-
-
+Route::get('/get-id', 'backend\DefaultController@getid')->name('get-id');
+Route::get('/get-name', 'backend\DefaultController@getname')->name('get-name');
+Route::get('/get-fname', 'backend\DefaultController@getfname')->name('get-fname');
+Route::get('/get-mname', 'backend\DefaultController@getmname')->name('get-mname');
+Route::get('/get-mobile', 'backend\DefaultController@getmobile')->name('get-mobile');
 });
 
 

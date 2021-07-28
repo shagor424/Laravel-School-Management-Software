@@ -34,7 +34,7 @@
           <section class="col-md-12 offset-md-0">
            
            <div class="card">
-              <div class="card-header" style="background-color: #086A87 ">
+              <div class="card-header"  style="background-color: #605ca8;color: white;padding: 5px">
                 <h5 style="color: white">Add Student Payment
                   <a  href="{{route('payments.student.view')}}" class="btn btn-warning  float-right"><i class="fa fa-list"> Payment List</i></a>
                 </h5>
@@ -42,46 +42,8 @@
             <div class="card-body" style="background-color:#E6E6E6">
   
    <div class="row"> 
-  <div class="col-md-2">
-    <div class="form-group"> 
-        <label for="payment_date" class="col-sm-12 control-label">Payment Date <span class="text-danger">*</span></label>
-      </div>
-    </div>
-        <div class="col-sm-4">
-             <input type="text" name="invoice_date" class="form-control text-center datepicker"    placeholder="YYYY-MM-DD" value="{{ $date }}" data-validation="requierd" id="invoice_date">
-            @error('invoice_date')
-            <strong class="text-danger">{{$message}}</strong>
-            @enderror
-        </div>
 
-       <div class="col-md-2">
-   <div class="form-group">
-        <label for="invoice_no" class="col-sm-12 control-label"> Invoice No <span class="text-danger">*</span></label>
-      </div>
-    </div>
-        <div class="col-md-4">
-          <input type="text"  name="invoice_no" class="form-control text-center" value="{{$invoice_no}}" id="invoice_no" data-validation="requierd" readonly style="background-color:  #d3de23 ">
-          @error('invoice_no')
-            <strong class="text-danger">{{$message}}</strong>
-            @enderror
-        </div>
-
-     
-
-     <div class="col-md-2">
-    <div class="form-group"> 
-        <label for="model" class="col-sm-12 control-label">Student Name </label>
-      </div>
-    </div>
-        <div class="col-sm-4">
-          <input type="text" name="model" class="form-control text-center" value="{{old('model')}}" id="model" ata-validation="requierd" readonly  style="background-color: #D8FDBA" >
-            @error('model')
-            <strong class="text-danger">{{$message}}</strong>
-            @enderror
-        </div>
-       
-   
-  <div class="col-md-2">
+    <div class="col-md-2">
    <div class="form-group">
         <label for="student_id" class="col-sm-12 control-label"> Student ID <span class="text-danger">*</span></label>
       </div>
@@ -94,6 +56,49 @@
                 @endforeach
             </select>
           @error('student_id')
+            <strong class="text-danger">{{$message}}</strong>
+            @enderror
+        </div>
+
+
+   <div class="col-md-2">
+    <div class="form-group"> 
+        <label for="mobile" class="col-sm-12 control-label">Student Mobile <span class="text-danger">*</span></label>
+      </div>
+    </div>
+        <div class="col-sm-4">
+          <input type="text" name="mobile" class="form-control text-center" value="{{old('mobile')}}" id="mobile"    style="background-color: #D8FDBA" >
+            @error('mobile')
+            <strong class="text-danger">{{$message}}</strong>
+            @enderror
+        </div>
+
+
+
+
+     
+
+     <div class="col-md-2">
+    <div class="form-group"> 
+        <label for="name" class="col-sm-12 control-label">Student Name </label>
+      </div>
+    </div>
+        <div class="col-sm-4">
+          <input type="text" name="name" class="form-control text-center" value="{{old('name')}}" id="name" ata-validation="requierd" readonly  style="background-color: #D8FDBA" >
+            @error('name')
+            <strong class="text-danger">{{$message}}</strong>
+            @enderror
+        </div>
+       
+   
+ <div class="col-md-2">
+    <div class="form-group"> 
+        <label for="payment_date" class="col-sm-12 control-label">Payment Date <span class="text-danger">*</span></label>
+      </div>
+    </div>
+        <div class="col-sm-4">
+             <input type="text" name="invoice_date" class="form-control text-center datepicker"    placeholder="YYYY-MM-DD" value="{{ $date }}" data-validation="requierd" id="invoice_date">
+            @error('invoice_date')
             <strong class="text-danger">{{$message}}</strong>
             @enderror
         </div>
@@ -112,19 +117,16 @@
         </div>
   
 
- <div class="col-md-2">
-    <div class="form-group">
-        <label for="feecat_id" class="col-sm-12 control-label">Fee Category <span class="text-danger">*</span></label>
+ 
+
+           <div class="col-md-2">
+   <div class="form-group">
+        <label for="invoice_no" class="col-sm-12 control-label"> Invoice No <span class="text-danger">*</span></label>
       </div>
     </div>
-        <div class="col-sm-4">
-            <select name="feecat_id" class="form-control select2bs4" id="feecat_id">
-                <option value="">Select Fee Category</option>
-                @foreach($feecats as $feecat)
-                <option value="{{$feecat->id}}">{{$feecat->cat_name}}</option>
-                @endforeach
-            </select>
-            @error('feecat_id')
+        <div class="col-md-4">
+          <input type="text"  name="invoice_no" class="form-control text-center" value="{{$invoice_no}}" id="invoice_no" data-validation="requierd" readonly style="background-color:  #d3de23 ">
+          @error('invoice_no')
             <strong class="text-danger">{{$message}}</strong>
             @enderror
         </div>
@@ -144,22 +146,52 @@
    
  
    <div class="col-md-2">
-    <div class="form-group"> 
-        <label for="mobile" class="col-sm-12 control-label">Student Mobile <span class="text-danger">*</span></label>
+    <div class="form-group">
+        <label for="feecat_id" class="col-sm-12 control-label">Fee Category <span class="text-danger">*</span></label>
       </div>
     </div>
         <div class="col-sm-4">
-          <input type="text" name="mobile" class="form-control text-center" value="{{old('mobile')}}" id="mobile"    style="background-color: #D8FDBA" >
-            @error('mobile')
+            <select name="feecat_id" class="form-control select2bs4" id="feecat_id">
+                <option value="">Select Fee Category</option>
+                @foreach($feecats as $feecat)
+                <option value="{{$feecat->id}}">{{$feecat->cat_name}}</option>
+                @endforeach
+            </select>
+            @error('feecat_id')
             <strong class="text-danger">{{$message}}</strong>
             @enderror
         </div>
+
+     {{--    <div class="col-md-2">
+      <div class="form-group"> 
+        <label for="class_id" class="col-sm-12 control-label">Class Name</label>
+      </div>
+    </div>
+        <div class="col-sm-4">
+           <input type="text" name="class_id" class="form-control text-center" value="{{old('class_id')}}" id="class_id"  readonly  style="background-color: #D8FDBA" >
+            @error('class_id')
+            <strong class="text-danger">{{$message}}</strong>
+            @enderror
+        </div>
+   
+ 
+   <div class="col-md-2">
+    <div class="form-group"> 
+        <label for="group_id" class="col-sm-12 control-label">Group Name <span class="text-danger">*</span></label>
+      </div>
+    </div>
+        <div class="col-sm-4">
+          <input type="text" name="group_id" class="form-control text-center" value="{{old('group_id')}}" id="group_id"    style="background-color: #D8FDBA" >
+            @error('group_id')
+            <strong class="text-danger">{{$message}}</strong>
+            @enderror
+        </div> --}}
  
 
     
         <div class="col-sm-12">
-            <a style="font-size: 14px;font-weight: bold;margin: 0;width: 150px"class="btn btn-danger btn-block float-right"><i  style="font-size: 30px;color: white" class="fa fa-plus-circle addeventmore"> <strong style="color: white;font-size: 16px;margin: 0">Add More</strong></i></a>
-        </div></i>
+            <button style="font-size: 14px;font-weight: bold;margin: 0;width: 125px"class="btn btn-danger btn-block float-right"><i  style="font-size: 30px;color: white" class="fa fa-plus-circle addeventmore"> <strong style="color: white;font-size: 16px;margin: 0">Add More</strong></i></button>
+        </div>
       
          </div>
 </div>
@@ -219,15 +251,21 @@
     </div>
 
      <div class="form-group col-md-9">
-      <select class="form-control form-control-sm " name="student_id" id="student_id">
+      <input type="text" class="form-control form-control " name="st_id" id="st_id">
+      
+    </div>
+
+   {{--   <div class="form-group col-md-9">
+      <select class="form-control form-control-sm select2bs4" name="student_id" id="st_id">
         <option value="1">Select Student</option>
         @foreach($students as $student)
-        <option value="">Select Student</option>
+        <option value="0">Select Student</option>
         <option value="{{ $student->id }}">{{ $student->id_no }}--- {{ $student->name }} ---{{ $student->mobile }}</option>
         @endforeach
         <option value="0">Select Student</option>
       </select>
     </div>
+ --}}
   </div>
 
     <div class="form-row new_customer" style="display: none">
@@ -391,6 +429,122 @@
     }
 });
 </script>
+
+
+
+
+<!-- dropdown publication -->
+<script type="text/javascript">
+  $(function(){
+    $(document).on('change','#student_id',function(){
+      var student_id =$(this).val();
+
+      $.ajax({
+        url:"{{route('get-name')}}",
+        type:"GET",
+        data:{student_id:student_id},
+        success:function(data){
+         $('#name').val(data);
+        }
+
+      });
+    });
+  });
+</script>
+
+<!-- dropdown author -->
+<script type="text/javascript">
+  $(function(){
+    $(document).on('change','#student_id',function(){
+      var student_id =$(this).val();
+
+      $.ajax({
+        url:"{{route('get-fname')}}",
+        type:"GET",
+        data:{student_id:student_id},
+        success:function(data){
+         $('#fname').val(data);
+        
+        }
+
+      });
+    });
+  });
+</script>
+
+<!-- dropdown publication -->
+<script type="text/javascript">
+  $(function(){
+    $(document).on('change','#student_id',function(){
+      var student_id =$(this).val();
+
+      $.ajax({
+        url:"{{route('get-mname')}}",
+        type:"GET",
+        data:{student_id:student_id},
+        success:function(data){
+         $('#mname').val(data);
+        }
+
+      });
+    });
+  });
+</script>
+
+<!-- dropdown author -->
+<script type="text/javascript">
+  $(function(){
+    $(document).on('change','#student_id',function(){
+      var student_id =$(this).val();
+
+      $.ajax({
+        url:"{{route('get-mobile')}}",
+        type:"GET",
+        data:{student_id:student_id},
+        success:function(data){
+         $('#mobile').val(data);
+        
+        }
+
+      });
+    });
+  });
+</script>
+
+<!-- dropdown publication -->
+<script type="text/javascript">
+  $(function(){
+    $(document).on('change','#student_id',function(){
+      var student_id =$(this).val();
+
+      $.ajax({
+        url:"{{route('get-id')}}",
+        type:"GET",
+        data:{student_id:student_id},
+        success:function(data){
+         $('#st_id').val(data);
+        }
+
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <!-- dropdown category -->
 <script type="text/javascript">
   $(function(){

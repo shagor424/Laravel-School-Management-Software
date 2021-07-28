@@ -404,10 +404,23 @@ $route = Route::current()->getName();
             </a>
 
             <ul type="background-color" class="nav nav-treeview">
+              
               <li class="nav-item">
                 <a href="{{route('payments.student.add')}}" class="nav-link {{($route=='payments.student.add')?'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Student Payment</p> 
+                  <p>Add Payment</p> 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('payments.student.view')}}" class="nav-link {{($route=='payments.student.view')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Approve List</p> 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('payments.student.pendinglist')}}" class="nav-link {{($route=='payments.student.pendinglist')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pending List</p> 
                 </a>
               </li>
 

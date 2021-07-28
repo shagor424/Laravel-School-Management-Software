@@ -40,7 +40,7 @@
                 </b></h5>
               </div> 
             <div class="card-body">
-                <table id="example1" class=" table-sm table table-bordered table-hover">
+                <table id="example1" class=" table-sm table  table-hover">
                   <thead>
                   <tr style="background-color: #001f3f;color: white">
                     <th>SL</th>

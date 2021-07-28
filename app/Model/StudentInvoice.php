@@ -22,6 +22,10 @@ class StudentInvoice extends Model
         return $this->hasMany(StudentInvoiceDetail::class, 'invoice_id', 'id');
       }
 
+ public function assign_student(){
+ return $this->belongsTo(AssignStudent::class,'student_id','student_id');
+  }
+
       
 
     

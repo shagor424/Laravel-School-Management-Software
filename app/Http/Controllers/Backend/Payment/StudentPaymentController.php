@@ -12,6 +12,7 @@ use App\Model\StudentYear;
 use App\Model\StudentShift;
 use App\Model\AssignSubject;
 use App\Model\StudentSection;
+
 use App\Model\Subject;
 use App\User;
 use DB;
@@ -32,7 +33,7 @@ class StudentPaymentController extends Controller
 {
 
     public function viewpayment(){
-        $data = StudentInvoice::orderby('id','DESC')->latest()->orderby('invoice_date','DESC')->where('status','0')->get();
+        $data = StudentInvoice::orderby('id','DESC')->latest()->orderby('invoice_date','DESC')->where('status','1')->get();
         return view('backend.payment.student.view-payment',compact('data'));
     }
 
@@ -61,19 +62,12 @@ class StudentPaymentController extends Controller
 
     }else{
 
-
-         if($request->student_id == '0'){
-                $student = new User();
-                $student->name = $request->name;
-                $student->mobile = $request->mobile;
-                $student->shop_name = $request->shop_name;
-                $student->address = $request->address;
-                $student->save();
+           if($request->st_id == null){
                 $student_id = $student->id;
             }else{
-                 $student_id = $request->student_id;
+                 $student_id = $request->st_id;
             }
-      
+
 
      $invoice = new StudentInvoice();
      $invoice->invoice_no = $request->invoice_no;
@@ -95,24 +89,21 @@ class StudentPaymentController extends Controller
      $invoice_details->student_id = $request->student_id[$i];
      $invoice_details->feecat_id = $request->feecat_id[$i];
      $invoice_details->amount = $request->amount[$i];
+     $invoice_details->selling_quantity = $request->selling_quantity[$i];
      $invoice_details->selling_price = $request->selling_price[$i];
+     // $invoice_details->total_amount = $request->estimated_amount;
      $invoice_details->status= '0';
      $invoice_details->save();
 
 
         }
 
-            if($request->student_id == '0'){
-                $student = new User();
-                $student->name = $request->name;
-                $student->mobile = $request->mobile;
-                $student->shop_name = $request->shop_name;
-                $student->address = $request->address;
-                $student->save();
+            if($request->st_id == null){
                 $student_id = $student->id;
             }else{
-                 $student_id = $request->student_id;
+                 $student_id = $request->st_id;
             }
+
             $payment = new StudentPayment();
             $payment_details = new StudentPaymentDetail();
             $payment->invoice_id = $invoice->id;
@@ -148,7 +139,6 @@ class StudentPaymentController extends Controller
 
      }   
 
-
     return redirect()->route('payments.student.pendinglist')->with('success','Invoice Created Successfully');
     }
 
@@ -158,12 +148,12 @@ class StudentPaymentController extends Controller
             StudentInvoiceDetail::where('invoice_id',$invoice->id)->delete();
             StudentPayment::where('invoice_id',$invoice->id)->delete();
             StudentPaymentDetail::where('invoice_id',$invoice->id)->delete();
-            return redirect()->route('payments.student.view')->with('success','Invoice Deleted Successfully');
+            return redirect()->route('payments.student.pendinglist')->with('success','Invoice Deleted Successfully');
 
           } 
 
           public function pendinglist(){
-   $data = StudentInvoice::orderby('id','DESC')->latest()->orderby('invoice_date','DESC')->where('status','0Student')->get();
+   $data = StudentInvoice::orderby('id','DESC')->latest()->orderby('invoice_date','DESC')->where('status','0')->get();
     return view('backend.payment.student.pending-list',compact('data'));
     }
 
@@ -187,35 +177,16 @@ public function studentinvoice($id){
 
     }
     public function approvestore(Request $request, $id){
-            foreach ($request->selling_quantity as $key => $value) {
-               $invoice_details = StudentInvoiceDetail::where('id',$key)->first();
-               $product = Product::where('id',$invoice_details->product_id)->first();
-               if($product->quantity < $request->selling_quantity[$key]){
-                return redirect()->back()->with('error','Sorry! You Approve Maximum Value');
-               }
-            }
 
             $invoice = StudentInvoice::find($id);
-            $invoice->approved_by =Auth::user()->id;
+            $invoice->approved_by = Auth::user()->id;
             $invoice->status = '1';
-            DB::transaction(function() use ($request, $invoice, $id){
-                 foreach ($request->selling_quantity as $key => $value) {
-               $invoice_details = StudentInvoiceDetail::where('id',$key)->first();
-               $invoice_details->status = '1';
-               $invoice_details->save();
-               $product = Product::where('id',$invoice_details->product_id)->first();
-               $product->quantity = ((float)($product->quantity))-((float)$request->selling_quantity[$key]);
-               $product->save();
-
-           }
-
             $invoice->save();
-            });
+         
            
       return redirect()->route('payments.student.view')->with('success','Invoice Approved Successfully');
 
    } 
-
 
      public function dailyview(Request $request){
        $sdate = date('y-m-d',strtotime($request->start_date));

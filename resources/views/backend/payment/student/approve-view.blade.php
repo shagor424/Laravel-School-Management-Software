@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row ">
           <div class="col-sm-6">
            
           </div><!-- /.col -->
@@ -34,9 +34,9 @@
           <section class="col-md-12">
            
            <div class="card">
-              <div class="card-header" style="background-color:   #f1c40f  ">
+              <div class="card-header" style="background-color: #605ca8;color: white;padding: 5px">
                 <h5>Invoice No :<strong> {{$invoice->id}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Student Name :<strong> {{$invoice['payment']['user']['name']}} </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Invoice Date: <strong>{{date('d-m-Y',strtotime($invoice->invoice_date))}}</strong>
-                  <a  href="{{route('payments.student.pendinglist')}}" class="btn btn-primary btn-sm float-right"><i class="fa fa-list"><strong style="font-size: 18px"> Invoice Pending List</strong></i></a>
+                  <a  href="{{route('payments.student.pendinglist')}}" class="btn btn-warning  float-right"><i class="fa fa-list"><strong style="font-size: 18px"> Invoice Pending List</strong></i></a>
                
                
                 </h5>
@@ -47,8 +47,11 @@
                                     @endphp --}}
                 <table width="100%" class="table table-bordered table-sm" >
                   <tbody>
-                    <tr><th colspan="5" class="text-center" style="font-size: 20px"><h2>Student Information</h2></th></tr>
                     <tr>
+
+                      <th colspan="5" class="text-center" style="font-size: 20px"><h2>Student Information</h2></th></tr>
+                   <tr style="background-color: #001f3f;color: white">
+                      <th width="15%" class="text-center">Student ID</th>
                       <th width="15%">Student Name</th>
                       <th width="15%">Father Name</th>
                       <th width="13%">Mobile</th>
@@ -56,10 +59,11 @@
                      {{--  <th width="40%">Address</th> --}}
                     </tr>
                      <tr>
-                      <td width="17%">{{$invoice['user']['name']}}</td>
-                      <td width="17%">{{$invoice['user']['fname']}}</td>
-                      <td width="13%">{{$invoice['user']['mobile']}}</td>
-                      <td width="36%">{{$invoice['user']['address']}}</td>
+                      <td width="17%"class="text-center">{{$invoice['payment']['user']['id_no']}}</td>
+                      <td width="17%">{{$invoice['payment']['user']['name']}}</td>
+                      <td width="17%">{{$invoice['payment']['user']['fname']}}</td>
+                      <td width="13%">{{$invoice['payment']['user']['mobile']}}</td>
+                      <td width="36%">{{$invoice['payment']['user']['address']}}</td>
                       {{-- <td width="36%">{{$invoice['user']['class']['name']}}</td> --}}
                     </tr>
                   </tbody>
@@ -69,7 +73,7 @@
                 @csrf
                  <table width="100%" class="table table-bordered table-sm" style="margin-bottom: 15px;">
                   <thead>
-                    <tr>
+                    <tr style="background-color: #001f3f;color: white">
                       <th>SL.</th>
                       <th class="text-center">Invoice ID</th>
                       <th>Fee Category</th>
@@ -84,8 +88,12 @@
                    @foreach($invoice['invoicedetails'] as $key => $invoicedetail)
                   
                     <tr>
-                      <input type="hidden" name="student_id[]" value="{{$invoicedetail->student_id}}">
-                      <input type="hidden" name="feecat_id[]" value="{{$invoicedetail->feecat_id}}">
+                      {{-- <input type="hidden" name="student_id" value="{{$invoicedetail->invoice->student_id}}">
+                      <input type="hidden" name="total_amount[{{$invoicedetail->invoice->id}}]" value="{{$invoicedetail->invoice->total_amount}}"> --}}
+
+                    {{-- <input type="hidden" name="student_id" value="{{$invoicedetail->student_id}}">
+                      <input type="hidden" name="total_amount[{{$invoicedetail->id}}]" value="{{$invoicedetail->total_amount}}"> --}}
+
                       <td style="text-align: center;">{{$key+1}}</td>
                       <td style="text-align: center;">{{ $invoicedetail->invoice_id }}</td>
                       <td>{{$invoicedetail['feecategory']['cat_name']}}</td>
@@ -104,7 +112,11 @@
                     </tr>
                      <tr>
                       <th style="text-align: right;" colspan="4">Discount Amount</th>
+                      @if($invoice->payment->discount_amount == null)
+                      <td style="text-align: right;">0.00</td>
+                      @else
                       <td style="text-align: right;">{{$invoice['payment']['discount_amount']}}</td>
+                      @endif
                     </tr>
                      @php
                    $total_amount = $total_sum - $invoice['payment']['discount_amount'];
@@ -123,7 +135,7 @@
                     </tr>
                   </tbody>
                 </table>
-                <button id="approve" type="submit" class="btn btn-danger float-right">Invoice Approve Store</button>
+                <button id="approve" type="submit" class="btn btn-danger btn-block font-weight-bold float-right">Invoice Approve Store</button>
                </form>
                 
                 </div>

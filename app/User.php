@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Model\Designation;
 use App\Model\StudentClass;
+use App\Model\AssignStudent;
 use DB;
 use PDF;
 use App\Model\EmployeeSalary;
@@ -57,13 +58,23 @@ class User extends Authenticatable
 
  }
 
-  public function class(){
- return $this->belongsTo(StudentClass::class,'class_id','id');
+ public function assign_student(){ 
+ return $this->hasMany(AssignStudent::class,'id','student_id');
 
  }
 
-  public function payment(){
+ public function payment(){
  return $this->hasMany(StudentPayment::class,'student_id','id');
+
+ }
+
+  public function invoice(){
+ return $this->hasMany(StudentInvoice::class,'student_id','id');
+
+ }
+
+ public function invoicedetails(){
+ return $this->hasMany(StudentInvoiceDetail::class,'student_id','id');
 
  }
 

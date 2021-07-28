@@ -38,4 +38,15 @@ class AssignStudent extends Model
       return $this->belongsTo(StudentSection::class,'section_id','id');
 
    }
+
+ public function user(){
+ return $this->belongsTo(User::class,'id','student_id');
+  }
+
+  // public function invoice(){ 
+  //       return $this->belongsTo(StudentInvoice::class, 'invoice_id', 'id');
+  //     }
+
+ 
+
 }
