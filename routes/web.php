@@ -222,13 +222,31 @@ Route::prefix('payments')->group(function(){
     Route::get('payments/student/add','Backend\Payment\StudentPaymentController@addpayment')->name('payments.student.add');
     Route::post('payments/student/store','Backend\Payment\StudentPaymentController@storepayment')->name('payments.student.store');
      Route::get('payments/student/allview/{id}','Backend\Payment\StudentPaymentController@allview')->name('payments.student.allview');
-     Route::get('payments/student/pdf','Backend\Payment\StudentPaymentController@idbypdf')->name('payments.student.idbypdf');
+     Route::get('payments/student/pdf/{id}','Backend\Payment\StudentPaymentController@studentinvoicepdf')->name('payments.student.idbypdf');
       Route::get('payments/student/delete/{id}','Backend\Payment\StudentPaymentController@delete')->name('payments.student.delete');
       Route::get('payments/student/pending-list','Backend\Payment\StudentPaymentController@pendinglist')->name('payments.student.pendinglist');
        Route::get('payments/student/approveview/{id}','Backend\Payment\StudentPaymentController@approveview')->name('payments.student.approveview');
        Route::post('payments/student/approvestore/{id}','Backend\Payment\StudentPaymentController@approvestore')->name('payments.student.approvestore');
   
-  
+  //========Customer Credit Or due============
+    Route::get('/credit/student/payment','backend\Payment\StudentPaymentController@creditstudent')->name('payments.student.credit');
+    Route::get('/credit/student/payment/pdf','backend\Payment\StudentPaymentController@creditpaymentpdf')->name('payments.student.credit-pdf');
+    Route::get('/invoice/student/payment/edit/{invoice_id}','backend\Payment\StudentPaymentController@invoicestudentedit')->name('payments.student.invoice-edit');
+    Route::post('/invoice/student/payment/update/{invoice_id}','backend\Payment\StudentPaymentController@invoicestudentupdate')->name('payments.student.invoice-update');
+     Route::get('/paid/student/payment','backend\Payment\StudentPaymentController@paidstudent')->name('payments.student.paid');
+    
+    // Student Wisw
+     Route::get('/student/wise/report','backend\Payment\StudentPaymentController@studentwisereport')->name('payments.student.wise-view');
+
+     Route::get('/customer/wise/payment/report','backend\Payment\StudentPaymentController@studentwisepaymentreport')->name('payments.student.wise-payment-report');
+    Route::get('/customer/wise/credit/report','backend\Payment\StudentPaymentController@studentwisecreditreport')->name('payments.student.wise-credit-report');
+    Route::get('/customer/wise/paid/report','backend\Payment\StudentPaymentController@studentwisepaidreport')->name('payments.student.wise-paid-report');
+
+    // Daily Report
+
+    Route::get('daily/invoice/view', 'backend\Payment\StudentPaymentController@dailyview')->name('payments.student.daily-view');
+Route::get('daily/invoice/report', 'backend\Payment\StudentPaymentController@dailyreportpdf')->name('payments.student.daily-report-pdf');
+Route::get('/invoice/daily/report', 'backend\Payment\StudentPaymentController@dailyreport')->name('payments.student.daily-report');
 
 });
             // employee

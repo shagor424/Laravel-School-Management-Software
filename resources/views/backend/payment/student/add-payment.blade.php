@@ -247,10 +247,12 @@
         <option value="full_due">Full Due</option>
         <option value="some_paid">Some Paid</option>
       </select>
-      <input type="text" name="paid_amount" class="form-control form-control-sm  paid_amount" id="paid_amount" placeholder="Enter Paid Amount" style="display: none">
+    </div>
+    <div>
+      <input type="text" name="paid_amount" class="form-control  paid_amount" id="paid_amount" placeholder="Enter Paid Amount" style="display: none;padding-top: 10px;">
     </div>
 
-     <div class="form-group col-md-9">
+     <div class="form-group col-md-4"style="display: none;">
       <input type="text" class="form-control form-control " name="st_id" id="st_id">
       
     </div>

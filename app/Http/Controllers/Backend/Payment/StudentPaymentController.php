@@ -169,11 +169,11 @@ class StudentPaymentController extends Controller
     }
 
 
-public function studentinvoice($id){
+public function studentinvoicepdf($id){
         $data['invoice'] = StudentInvoice::with(['invoicedetails'])->find($id);
-        $pdf = PDF::loadView('backend.payment.student.pdf.paymentIdBy-pdf',$data);
+        $pdf = PDF::loadView('backend.payment.student.pdf.student-invoice-pdf',$data);
             $pdf->SetProtection(['copy','print'],'','pass');
-            return $pdf->stream('customer-invoice.pdf');
+            return $pdf->stream('student-invoice.pdf');
 
     }
     public function approvestore(Request $request, $id){
@@ -182,28 +182,110 @@ public function studentinvoice($id){
             $invoice->approved_by = Auth::user()->id;
             $invoice->status = '1';
             $invoice->save();
-         
-           
       return redirect()->route('payments.student.view')->with('success','Invoice Approved Successfully');
-
    } 
 
-     public function dailyview(Request $request){
+   // Due Ammount Paid
+
+    public function creditstudent(){
+     $data = StudentPayment::whereIn('paid_status',['full_due','some_paid'])->get();
+      return view('backend.payment.student.others.credit-student',compact('data'));
+    } 
+// Due Ammount edit
+     public function invoicestudentedit($invoice_id){
+      $payment = StudentPayment::where('invoice_id',$invoice_id)->first();
+       $invoicedetails = StudentInvoiceDetail::where('invoice_id',$payment->invoice_id)->get();
+      return view('backend.payment.student.others.edit-student-invoice',compact('payment','invoicedetails'));
+    } 
+
+// Due Ammount Upadate
+
+    public function invoicestudentupdate(Request $request,$invoice_id){
+
+      if($request->new_paid_amount < $request->paid_amount){
+        return redirect()->back()->with('error', 'Sorry! you have paid maximum value');
+      }else{
+         $payment = StudentPayment::where('invoice_id',$invoice_id)->first();
+         $payment_details = new StudentPaymentDetail();
+         $payment->paid_status = $request->paid_status;
+         if($request->paid_status == 'full_paid'){
+          $payment->paid_amount = StudentPayment::where('invoice_id',$invoice_id)->first()['paid_amount']+$request->new_paid_amount;
+          $payment->due_amount = '0';
+          $payment_details->current_paid_amount = $request->new_paid_amount;
+         }elseif ($request->paid_status == 'some_paid') {
+            $payment->paid_amount = StudentPayment::where('invoice_id',$invoice_id)->first()['paid_amount']+$request->paid_amount;
+            $payment->due_amount = StudentPayment::where('invoice_id',$invoice_id)->first()['due_amount']-$request->paid_amount;
+            $payment_details->current_paid_amount = $request->paid_amount;
+         
+          }
+         $payment->save();
+         $payment_details->invoice_id = $invoice_id;
+         $payment_details->payment_date = date('Y-m-d',strtotime($request->payment_date));
+         $payment_details->updated_by = Auth::user()->id;
+         $payment_details->save();
+       
+     
+      return redirect()->route('payments.student.credit')->with('success','Student Invoice Payment Update Successfully');
+      }
+
+    }
+
+    public function paidstudent(){
+     $data = StudentPayment::whereIn('paid_status',['full_paid'])->get();
+      return view('backend.payment.student.others.paid-student',compact('data'));
+    } 
+
+// Student Wise payment report
+
+    public function studentwisereport(){
+    $students = User::all();
+    return view('backend.payment.student.student-wise.student-wise-view',compact('students'));
+    }
+
+    public function studentwisepaymentreport(Request $request){
+      $data['invoicedetails'] = StudentInvoiceDetail::where('student_id',$request->student_id)->get();
+       $data['payment'] = StudentPayment::where('student_id',$request->student_id)->get();
+       $data['user'] = User::where('id',$request->student_id)->get();
+      $pdf = PDF::loadView('backend.payment.student.student-wise.pdf.student-wise-payment-report-pdf',$data);
+        $pdf->SetProtection(['copy','print'],'','pass');
+        return $pdf->stream('student-wise-payment-report.pdf');
+      
+    }
+
+     public function studentwisecreditreport(Request $request){
+       $data['payment'] = StudentPayment::where('student_id',$request->student_id)->whereIn('paid_status',['full_due','some_paid'])->get();
+      $pdf = PDF::loadView('backend.payment.student.student-wise.pdf.student-wise-credit-report-pdf',$data);
+        $pdf->SetProtection(['copy','print'],'','pass');
+        return $pdf->stream('student-wise-credit-report.pdf');
+      
+    }
+
+     public function studentwisepaidreport(Request $request){
+       $data['payment'] = StudentPayment::where('student_id',$request->student_id)->whereIn('paid_status',['full_paid'])->get();
+      $pdf = PDF::loadView('backend.payment.student.student-wise.pdf.student-wise-paid-report-pdf',$data);
+        $pdf->SetProtection(['copy','print'],'','pass');
+        return $pdf->stream('student-wise-paid-report.pdf');
+      
+    }
+
+// Daily  payment report
+
+    public function dailyview(Request $request){
        $sdate = date('y-m-d',strtotime($request->start_date));
         $edate = date('y-m-d',strtotime($request->end_date));
-        $data['alldata'] = Invoice::whereBetween('invoice_date',[$sdate,$edate])->where('status','1')->get();
+        $data['alldata'] = StudentInvoice::whereBetween('invoice_date',[$sdate,$edate])->where('status','1')->get();
        
-         return view('backend.payment.student.daily-view',$data);
+         return view('backend.payment.student.daily.daily-view',$data);
     }
 
 
     public function dailyreportpdf(Request $request){
         $sdate = date('y-m-d',strtotime($request->start_date));
         $edate = date('y-m-d',strtotime($request->end_date));
-        $data['alldata'] = Invoice::whereBetween('invoice_date',[$sdate,$edate])->where('status','1')->get();
+        $data['alldata'] = StudentInvoice::whereBetween('invoice_date',[$sdate,$edate])->where('status','1')->get();
         $data['start_date'] =date('y-m-d',strtotime($request->start_date));
         $data['end_date'] =date('y-m-d',strtotime($request->end_date));
-         $pdf = PDF::loadView('backend.payment.student.pdf.daily-invoice-report-pdf',$data);
+         $pdf = PDF::loadView('backend.payment.student.daily.daily-report-pdf',$data);
             $pdf->SetProtection(['copy','print'],'','pass');
             return $pdf->stream('daily-invoice-report.pdf');
 
@@ -212,10 +294,10 @@ public function studentinvoice($id){
       public function dailyreport(Request $request){
         $sdate = date('y-m-d',strtotime($request->start_date));
         $edate = date('y-m-d',strtotime($request->end_date));
-        $data['alldata'] = Invoice::whereBetween('invoice_date',[$sdate,$edate])->where('status','1')->get();
+        $data['alldata'] = StudentInvoice::whereBetween('invoice_date',[$sdate,$edate])->where('status','1')->get();
         $data['start_date'] =date('y-m-d',strtotime($request->start_date));
         $data['end_date'] =date('y-m-d',strtotime($request->end_date));
-        return view('backend.invoice.daily-view',$data);
+        return view('backend.payment.student.daily.daily-view',$data);
 
      }
 }

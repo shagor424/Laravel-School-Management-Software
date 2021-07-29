@@ -108,11 +108,11 @@
 
 @foreach($data as $key => $invoice)
     <div class="modal fade" id="viewinvoice-{{ $invoice->id }}" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header" style="background-color: #605ca8;color: white;">
-              <h5>Invoice No :<strong> {{$invoice->id}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Student Name :<strong> {{$invoice['user']['name']}} </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Student ID :<strong> {{$invoice['user']['id_no']}} </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Invoice Date: <strong>{{date('d-m-Y',strtotime($invoice->invoice_date))}}</strong>
-                </h5>
+        <div class="modal-dialog modal-lg" >
+          <div class="modal-content card-outline-danger"style="border-bottom: solid 5px blue;">
+            <div class="modal-header bg-info" {{-- style="background-color: #605ca8;color: white;" --}}>
+              <h6>Invoice No :<strong> {{$invoice->id}}</strong>  &nbsp;&nbsp;Student Name :<strong> {{$invoice['user']['name']}} </strong>&nbsp;&nbsp;Student ID :<strong> {{$invoice['user']['id_no']}} </strong>&nbsp;&nbsp;&nbsp;Invoice Date: <strong>{{date('d-m-Y',strtotime($invoice->invoice_date))}}</strong>
+                </h6>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
@@ -122,8 +122,8 @@
                   <tbody>
                     <tr>
 
-                      <th colspan="7" class="text-center" style="font-size: 20px"><h2>Student Information</h2></th></tr>
-                   <tr style="background-color: #001f3f;color: white">
+                      <th colspan="7" class="text-center" style="font-size: 20px"><h5>Student Information</h5></th></tr>
+                   <tr {{-- style="background-color: #001f3f;color: white" --}}>
                       <th width="15%" class="text-center">Student ID</th>
                       <th width="20%">Student Name</th>
                       <th width="20%">Father Name</th>
@@ -135,7 +135,7 @@
                      <tr>
                       <td width="10%"class="text-center">{{$invoice['user']['id_no']}}</td>
                       <td width="20%">{{$invoice->user->name}}</td>
-                      <td width="20%">{{$invoice['user']['fname']}}</td>
+                      <td width="20%">{{$invoice->user->fname}}</td>
                       <td width="10%">{{$invoice->assign_student->student_class->name}}</td>
                       <td width="10%">{{$invoice->assign_student->group->name}}</td>
                       <td width="10%">{{$invoice->assign_student->section->name}}</td>
@@ -144,9 +144,9 @@
                   </tbody>
                 </table>
                 {{-- <br> --}}
-                <table width="100%" class="table table-bordered table-sm" style="margin-bottom: 15px;">
+                <table width="100%" class="table table-bordered  table-sm" style="margin-bottom: 15px;">
                   <thead>
-                    <tr style="background-color: #001f3f;color: white">
+                    <tr {{-- style="background-color: #001f3f;color: white" --}}>
                       <th>SL.</th>
                       <th class="text-center">Invoice ID</th>
                       <th>Fee Category</th>
@@ -203,7 +203,7 @@
                   </tbody>
                 </table>
             </div>
-            <div class="modal-footer" style="background-color: #605ca8;color: white;">
+            <div class="modal-footer" {{-- style="background-color: #605ca8;color: white;" --}}>
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
              
             </div>

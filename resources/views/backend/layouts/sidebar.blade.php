@@ -423,6 +423,33 @@ $route = Route::current()->getName();
                   <p>Pending List</p> 
                 </a>
               </li>
+               <li class="nav-item">
+                <a href="{{route('payments.student.credit')}}" class="nav-link {{($route=='payments.student.credit')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Credit List</p> 
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('payments.student.paid')}}" class="nav-link {{($route=='payments.student.paid')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Paid List</p> 
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('payments.student.wise-view')}}" class="nav-link {{($route=='payments.student.wise-view')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Student Wise Report</p> 
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('payments.student.daily-view')}}" class="nav-link {{($route=='payments.student.daily-view')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Daily Payment Report</p> 
+                </a>
+              </li>
 
         </ul>
     </li>

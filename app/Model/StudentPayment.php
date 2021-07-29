@@ -25,5 +25,9 @@ class StudentPayment extends Model
       public function paymentdetails(){
         return $this->belongsTo(StudentPaymentDetail::class, 'invoice_id', 'id');
       }
+
+       public function assign_student(){
+        return $this->belongsTo(AssignStudent::class, 'student_id', 'student_id');
+      }
   
 }
