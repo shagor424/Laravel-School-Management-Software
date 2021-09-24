@@ -115,31 +115,33 @@
                 </h6>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
-              </button>
+              </button> 
             </div>
             <div class="modal-body">
                <table width="100%" class="table table-bordered table-sm" >
                   <tbody>
                     <tr>
 
-                      <th colspan="7" class="text-center" style="font-size: 20px"><h5>Student Information</h5></th></tr>
+                      <th colspan="8" class="text-center" style="font-size: 20px"><h5>Student Information</h5></th></tr>
                    <tr {{-- style="background-color: #001f3f;color: white" --}}>
                       <th width="15%" class="text-center">Student ID</th>
                       <th width="20%">Student Name</th>
                       <th width="20%">Father Name</th>
-                      <th width="10%">Class</th>
-                      <th width="10%">Group</th>
-                      <th width="10%">Section</th>
-                      <th width="15%">Session</th>
+                      <th width="10%" class="text-center">Class</th>
+                      <th width="10%" class="text-center">Group</th>
+                      <th width="10%" class="text-center">Section</th>
+                      <th width="10%" class="text-center">Session</th>
+                      <th width="10%" class="text-center">Roll</th>
                     </tr>
                      <tr>
                       <td width="10%"class="text-center">{{$invoice['user']['id_no']}}</td>
                       <td width="20%">{{$invoice->user->name}}</td>
                       <td width="20%">{{$invoice->user->fname}}</td>
-                      <td width="10%">{{$invoice->assign_student->student_class->name}}</td>
-                      <td width="10%">{{$invoice->assign_student->group->name}}</td>
-                      <td width="10%">{{$invoice->assign_student->section->name}}</td>
-                      <td width="10%">{{$invoice->assign_student->year->name}}</td>
+                      <td width="10%" class="text-center">{{$invoice->assign_student->student_class->name}}</td>
+                      <td width="10%" class="text-center">{{$invoice->assign_student->group->name}}</td>
+                      <td width="10%" class="text-center">{{$invoice->assign_student->section->name}}</td>
+                      <td width="10%" class="text-center">{{$invoice->assign_student->year->name}}</td>
+                      <td width="10%" class="text-center">{{$invoice->assign_student->class_roll}}</td>
                     </tr>
                   </tbody>
                 </table>

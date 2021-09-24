@@ -20,7 +20,7 @@
                   <tbody>
                     <tr>
 
-                      <th colspan="5" class="text-center" style="font-size: 20px"><h4>Student Information</h4></th>
+                      <th colspan="6" class="text-center" style="font-size: 20px"><h4>Student Information</h4></th>
                       <th colspan="2">Invoice Date : <br>{{ date('d-M-Y',strtotime($invoice->invoice_date)) }}</th>
                   </tr>
                   <tr >
@@ -30,7 +30,8 @@
                       <th width="10%"style="text-align: center;">Class</th>
                       <th width="10%"style="text-align: center;">Group</th>
                       <th width="10%"style="text-align: center;">Section</th>
-                      <th width="15%"style="text-align: center;">Session</th>
+                      <th width="10%"style="text-align: center;">Session</th>
+                      <th width="10%" style="text-align: center;">Roll</th>
                     </tr>
                      <tr>
                       <td width="20%" style="text-align: center;">{{$invoice['user']['id_no']}}</td>
@@ -40,6 +41,7 @@
                       <td width="10%" style="text-align: center;">{{$invoice->assign_student->group->name}}</td>
                       <td width="10%" style="text-align: center;">{{$invoice->assign_student->section->name}}</td>
                       <td width="10%" style="text-align: center;">{{$invoice->assign_student->year->name}}</td>
+                      <td width="10%" style="text-align: center;">{{$invoice->assign_student->class_roll}}</td>
                     </tr>
                   </tbody>
                 </table>

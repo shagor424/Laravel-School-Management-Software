@@ -28,23 +28,25 @@
            
             <div class="card-body">
                                    
-                <table width="100%" class="table table-bordered table-sm" border="1" >
+                <table width="100%" class="table table-bordered table-sm" border="1" > 
                   <tr style="background-color:lightgreen">
                       <th width="15%" class="text-center">Student ID</th>
                       <th width="20%">Student Name</th>
                       <th width="20%">Father Name</th>
-                      <th width="10%">Class</th>
-                      <th width="10%">Group</th>
-                      <th width="10%">Section</th>
-                      <th width="15%">Session</th>
+                      <th width="10%" style="text-align:center;">Class</th>
+                      <th width="10%" style="text-align:center;">Group</th>
+                      <th width="10%" style="text-align:center;">Section</th>
+                      <th width="13%" style="text-align:center;">Session</th> 
+                      <th width="10%" style="text-align:center;">Roll</th>
                     </tr>
                      <tr><td>{{ $payment['0']['user']['id_no'] }}</td>
                      <td>{{ $payment['0']['user']['name'] }}</td>
                      <td>{{ $payment['0']['user']['fname'] }}</td>
-                     <td>{{ $payment['0']['assign_student']['student_class']['name'] }}</td>
-                     <td>{{ $payment['0']['assign_student']['group']['name'] }}</td>
-                     <td>{{ $payment['0']['assign_student']['section']['name'] }}</td>
-                     <td>{{ $payment['0']['assign_student']['year']['name'] }}</td>
+                     <td style="text-align:center;">{{ $payment['0']['assign_student']['student_class']['name'] }}</td>
+                     <td style="text-align:center;">{{ $payment['0']['assign_student']['group']['name'] }}</td>
+                     <td style="text-align:center;">{{ $payment['0']['assign_student']['section']['name'] }}</td>
+                     <td style="text-align:center;">{{ $payment['0']['assign_student']['year']['name'] }}</td>
+                     <td style="text-align:center;">{{ $payment['0']['assign_student']['class_roll'] }}</td>
                     </tr>
 
                 </table>

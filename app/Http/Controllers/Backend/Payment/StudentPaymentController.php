@@ -12,7 +12,6 @@ use App\Model\StudentYear;
 use App\Model\StudentShift;
 use App\Model\AssignSubject;
 use App\Model\StudentSection;
-
 use App\Model\Subject;
 use App\User;
 use DB;
@@ -285,7 +284,8 @@ public function studentinvoicepdf($id){
         $data['alldata'] = StudentInvoice::whereBetween('invoice_date',[$sdate,$edate])->where('status','1')->get();
         $data['start_date'] =date('y-m-d',strtotime($request->start_date));
         $data['end_date'] =date('y-m-d',strtotime($request->end_date));
-         $pdf = PDF::loadView('backend.payment.student.daily.daily-report-pdf',$data);
+         $pdf = PDF::loadView('backend.payment.student.daily.daily-report-pdf',$data, [], ['mode' => 'utf-8',
+  'format' => [297,210]]);
             $pdf->SetProtection(['copy','print'],'','pass');
             return $pdf->stream('daily-invoice-report.pdf');
 

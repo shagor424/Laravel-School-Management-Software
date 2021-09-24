@@ -39,9 +39,9 @@
   <script src="{{asset('public/backend')}}/plugins/jquery/jquery.min.js"></script>
 
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ {{--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> --}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.js"> </script>
   
 
@@ -61,7 +61,7 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav style="background-color: #0B3861" class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav style="background-color:#401f5c"  class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -75,38 +75,39 @@
       </li>
     </ul>
 
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
+    
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
-     
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a style="color: white" class="nav-link" data-toggle="dropdown" href="#">
-         
-          <span>{{ Auth::user()->name}}</span>
+     <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i style="color: white;" class="fa fa-user "> {{ Auth::user()->name }}</i>
+          {{-- <span class="badge badge-warning navbar-badge">15</span> --}}
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          
+          {{-- <span class="dropdown-item dropdown-header">15 Notifications</span> --}}
           <div class="dropdown-divider"></div>
-          <a href="{{ route('logout') }}"
+          <a href="{{ route('admin.profiles.view') }}" class="dropdown-item">
+            <i class="fa fa-id-card mr-2"></i> My Profile
+          </a>
+            
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="{{ route('admin.profiles.view') }}" class="dropdown-item">
+            <i class="fa fa-lock mr-2"></i> Change Password
+          </a>
+
+          <div class="dropdown-divider"></div>
+          <a href="{{ route('logout') }}"class="dropdown-item"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" class="dropdown-item dropdown-footer">Logout</a>
+                                                     document.getElementById('logout-form').submit();" ><i class="fa fa-sign-in-alt mr-2"></i> Logout</a>
                                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-        </div>
+         
+            
+          
       </li>
     
     </ul>
@@ -114,7 +115,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside style="background-color: #0B3861"  class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside style="background-color:#401f5c"  class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('home')}}" class="brand-link">
       <img src="{{asset('public/backend')}}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">

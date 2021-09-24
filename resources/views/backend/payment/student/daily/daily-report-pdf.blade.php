@@ -7,7 +7,7 @@
 <body>
 
 <div>
-    <img src="{{ asset('public/upload/header-logo.jpg') }}" width="100%" style="height:75px">
+    <img src="{{ asset('public/upload/header-logo.jpg') }}" width="100%" style="height:120px">
 </div>
 
 <h2 style="text-align: center;">Daily Wise Student Payment Report</h2>

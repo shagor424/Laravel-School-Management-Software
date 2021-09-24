@@ -33,7 +33,7 @@ $route = Route::current()->getName();
             </ul>
           </li> 
           @endif
-           <li class="nav-item has-treeview {{($prefix=='/profiles')?'menu-open':''}}">
+           {{-- <li class="nav-item has-treeview {{($prefix=='/profiles')?'menu-open':''}}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
@@ -57,7 +57,7 @@ $route = Route::current()->getName();
               </li>
             </ul>
           </li> 
-
+ --}}
            <li class="nav-item has-treeview 
             {{($prefix=='/setups')?'menu-open':''}}">
             <a href="#" class="nav-link">

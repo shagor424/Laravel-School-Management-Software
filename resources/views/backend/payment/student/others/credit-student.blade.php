@@ -73,7 +73,7 @@
                <td style="text-align: right;color: red;font-weight: bold;">{{$invoice['due_amount']}} </td> 
                
                       <td style="text-align: center;">
-                          
+                          <a target="_blank" href="{{route('payments.student.invoice-edit',$invoice->invoice_id)}}" class="btn btn-success btn-xs"  title=" Update Invoice"> <i class="fa fa-edit"></i></a>
                            <a target="_blank" href="{{route('payments.student.idbypdf',$invoice->invoice_id)}}" class="btn btn-primary btn-xs"  title=" Print Invoice"> <i class="fa fa-print"></i></a>
                             
                       </td> 

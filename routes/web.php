@@ -29,21 +29,19 @@ Route::prefix('users')->group(function(){
 	Route::post('/store','Backend\UserController@store')->name('users.store');
 	Route::get('/edit/{id}','Backend\UserController@edit')->name('users.edit');
 	Route::post('/update/{id}','Backend\UserController@update')->name('users.update');
+    Route::get('/active/{id}','Backend\UserController@active')->name('users.active');
+    Route::get('/inactive/{id}','Backend\UserController@inactive')->name('users.inactive');
 	Route::get('/delete/{id}','Backend\UserController@delete')->name('users.delete');
 
     
 }); 
  
- // prfiles
+ // profiles
+    Route::get('/profile-view','admin\AdminProfileController@view')->name('admin.profiles.view');
+    Route::post('/profile-update','admin\AdminProfileController@update')->name('admin.profiles.update');
+    Route::post('/password/update','admin\AdminProfileController@passwordupdate')->name('admin.profiles.password.update');
 
-  Route::prefix('profiles')->group(function(){
-	Route::get('/view','Backend\ProfileController@view')->name('profiles.view');
-	Route::get('/edit','Backend\ProfileController@edit')->name('profiles.edit');
-	Route::post('/store','Backend\ProfileController@update')->name('profiles.update');
-	Route::get('/password/view','Backend\ProfileController@passwordview')->name('profiles.password.view');
-	Route::post('/password/update','Backend\ProfileController@passwordupdate')->name('profiles.password.update');
 
-});
 
   // setups class
 

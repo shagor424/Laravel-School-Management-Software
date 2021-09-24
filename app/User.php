@@ -11,6 +11,7 @@ use App\Model\AssignStudent;
 use DB;
 use PDF;
 use App\Model\EmployeeSalary;
+use App\Model\Role;
 
 class User extends Authenticatable
 {
@@ -22,7 +23,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role_id',
     ];
 
     /**
@@ -77,6 +78,10 @@ class User extends Authenticatable
  return $this->hasMany(StudentInvoiceDetail::class,'student_id','id');
 
  }
+
+  public function user_role(){
+        return $this->belongsTo(Role::class,'role_id','id');
+    }
 
 }
 

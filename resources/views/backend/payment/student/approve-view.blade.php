@@ -48,23 +48,27 @@
                 <table width="100%" class="table table-bordered table-sm" >
                   <tbody>
                     <tr>
-
-                      <th colspan="5" class="text-center" style="font-size: 20px"><h2>Student Information</h2></th></tr>
-                   <tr style="background-color: #001f3f;color: white">
+                      <th colspan="8" class="text-center" style="font-size: 20px"><h5>Student Information</h5></th>
+                    </tr>
+                   <tr {{-- style="background-color: #001f3f;color: white" --}}>
                       <th width="15%" class="text-center">Student ID</th>
-                      <th width="15%">Student Name</th>
-                      <th width="15%">Father Name</th>
-                      <th width="13%">Mobile</th>
-                      <th width="40%">Address</th>
-                     {{--  <th width="40%">Address</th> --}}
+                      <th width="20%">Student Name</th>
+                      <th width="20%">Father Name</th>
+                      <th width="10%" class="text-center">Class</th>
+                      <th width="10%" class="text-center">Group</th>
+                      <th width="10%" class="text-center">Section</th>
+                      <th width="10%" class="text-center">Session</th>
+                      <th width="10%" class="text-center">Roll</th>
                     </tr>
                      <tr>
-                      <td width="17%"class="text-center">{{$invoice['payment']['user']['id_no']}}</td>
-                      <td width="17%">{{$invoice['payment']['user']['name']}}</td>
-                      <td width="17%">{{$invoice['payment']['user']['fname']}}</td>
-                      <td width="13%">{{$invoice['payment']['user']['mobile']}}</td>
-                      <td width="36%">{{$invoice['payment']['user']['address']}}</td>
-                      {{-- <td width="36%">{{$invoice['user']['class']['name']}}</td> --}}
+                      <td width="10%"class="text-center">{{$invoice['user']['id_no']}}</td>
+                      <td width="20%">{{$invoice->user->name}}</td>
+                      <td width="20%">{{$invoice->user->fname}}</td>
+                      <td width="10%" class="text-center">{{$invoice->assign_student->student_class->name}}</td>
+                      <td width="10%" class="text-center">{{$invoice->assign_student->group->name}}</td>
+                      <td width="10%" class="text-center">{{$invoice->assign_student->section->name}}</td>
+                      <td width="10%" class="text-center">{{$invoice->assign_student->year->name}}</td>
+                      <td width="10%" class="text-center">{{$invoice->assign_student->class_roll}}</td>
                     </tr>
                   </tbody>
                 </table>

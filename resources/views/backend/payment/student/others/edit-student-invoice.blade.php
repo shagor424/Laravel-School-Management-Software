@@ -14,7 +14,7 @@
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('home')}}">Home</a></li>
-              <li class="breadcrumb-item active">EditStudent Invoice</li>
+              <li class="breadcrumb-item active">Edit Student Invoice</li>
             </ol>
           </div>
         </div><!-- /.row -->
@@ -45,6 +45,9 @@
                                     
                 <table width="100%" class="table table-bordered table-sm" >
                   <tbody>
+                    <tr>
+                      <th colspan="8" class="text-center" style="font-size: 20px"><h5>Student Information</h5></th>
+                    </tr>
                     <tr {{-- style="background-color: #001f3f;color: white" --}}>
                       <th width="15%" class="text-center">Student ID</th>
                       <th width="20%">Student Name</th>
@@ -52,7 +55,8 @@
                       <th width="10%">Class</th>
                       <th width="10%">Group</th>
                       <th width="10%">Section</th>
-                      <th width="15%">Session</th>
+                      <th width="10%">Session</th>
+                      <th width="10%">Roll</th>
                     </tr>
                      <tr>
                       <td width="10%"class="text-center">{{$payment['user']['id_no']}}</td>
@@ -62,6 +66,7 @@
                       <td width="10%">{{$payment->assign_student->group->name}}</td>
                       <td width="10%">{{$payment->assign_student->section->name}}</td>
                       <td width="10%">{{$payment->assign_student->year->name}}</td>
+                      <td width="10%" class="text-center">{{$payment->assign_student->class_roll}}</td>
                     </tr>
                   </tbody>
                 </table>
