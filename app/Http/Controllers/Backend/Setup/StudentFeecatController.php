@@ -24,12 +24,12 @@ class StudentFeecatController extends Controller
      public function store(Request $request){
 
         $this->validate($request,[
-            'name'=>'unique:Fee_catagories,name'
+            'cat_name'=>'required|unique:fee_catagories,cat_name'
 
         ]);
 
     	$data = new FeeCatagory();
-    	$data->name = $request->name;
+    	$data->cat_name = $request->cat_name;
     	$data->save();
 
     	return redirect()->route('feecats.student.feecat.view')->with('success','Data Inserted Successfully');
@@ -43,10 +43,11 @@ class StudentFeecatController extends Controller
 
         public function update(Request $request,$id){
             $data = FeeCatagory::find($id);
+
              $this->validate($request,[
-            'name'=>'unique:Fee_catagories,name,'.$data->id
+            'cat_name'=>'required|unique:fee_catagories,cat_name,'.$data->id
         ]);
-        $data->name = $request->name;
+        $data->cat_name = $request->cat_name;
         $data->save();
 
     return redirect()->route('feecats.student.feecat.view')->with('success','Data Updated Successfully');

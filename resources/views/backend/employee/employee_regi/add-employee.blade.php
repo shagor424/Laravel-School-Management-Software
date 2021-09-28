@@ -42,8 +42,7 @@
           <!-- Left col -->
        <section class="col-md-12">
            
-           <div class="card">
-              <div class="card-header" style="background-color: #605ca8;color: white;padding: 5px">
+            <tr style="background-color: #b382dd;">
                 <h5 ><b>
                    @if(isset($editdata))
               Edit Employee

@@ -33,8 +33,18 @@
           <!-- Left col -->
           <section class="col-md-12">
            
-           <div class="card">
-              <div class="card-header"style="background-color: #605ca8;color: white;padding: 5px">
+          @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+                   <button  type="button" style="margin-top: -30px;color:white" class="close text-white" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+          @endif
+          <div class="panel"style="background:white;padding-bottom:5px ;border-bottom: 3px solid #7e3796;">
+              <div class="panel-header" style="background-color: #7e3796;color: white;padding: 10px">
                 <h5 ><b>Assign Subject Details
                   <a  href="{{route('asssubs.student.asssub.view')}}" class="btn btn-warning  float-right"><i class="fa fa-list"> Assign Subject List</i></a></b>
                 </h5>
@@ -43,7 +53,7 @@
               <h4 style="color:  blue "> <strong>Class Name :</strong> {{$editdata['0']['student_class']['name']}} &nbsp;&nbsp;&nbsp;&nbsp;<strong>Group Name :</strong>{{$editdata['0']['student_group']['name']}} &nbsp;&nbsp;&nbsp;&nbsp; <strong>Clss Title :</strong>{{$editdata['0']['class_title']['name']}} </h4>
                 <table class="table table-sm  table-hover">
                   <thead>
-                  <tr style="background-color: #001f3f;color: white">
+                  <tr style="background-color: #b382dd;">
                     <th>SL</th>
                     <th>Subject ID</th>
                     <th>Subject Name</th>

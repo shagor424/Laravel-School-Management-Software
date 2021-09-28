@@ -42,8 +42,18 @@
           <!-- Left col -->
        <section class="col-md-12">
            
-           <div class="card">
-              <div class="card-header"style="background-color: #605ca8;color: white;padding: 5px">
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+                   <button  type="button" style="margin-top: -30px;color:white" class="close text-white" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+          @endif
+          <div class="panel"style="background:white;padding-bottom:5px ;border-bottom: 3px solid #7e3796;">
+              <div class="panel-header" style="background-color: #7e3796;color: white;padding: 10px">
                 <h5 ><b>
                    @if(isset($editdata))
               Edit Employee Attendance
@@ -67,7 +77,7 @@
 
                 <table id="example1" class=" table-sm table table-bordered table-striped dt-responsive">
                   <thead>
-                  <tr style="background-color: #001f3f;color: white">
+                  <tr style="background-color: #b382dd;">
                     <th rowspan="2" class="text-center" style="vertical-align: middle;">SL</th>
                     <th rowspan="2" class="text-center" style="vertical-align: middle;">ID NO</th>
                     <th rowspan="2" class="text-center" style="vertical-align: middle;">Employee Name </th>

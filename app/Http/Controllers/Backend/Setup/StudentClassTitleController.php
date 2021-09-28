@@ -18,15 +18,12 @@ class StudentClassTitleController extends Controller
     return view('backend.setup.ClassTitle.view-class-title',$data);
     }
     
-    public function add(){
-
-    	return view('backend.setup.ClassTitle.add-class-title');
-    }
+    
     
      public function store(Request $request){
 
         $this->validate($request,[
-            'name'=>'unique:class_titles,name'
+            'name'=>'required|unique:class_titles,name'
 
         ]);
 
@@ -36,17 +33,12 @@ class StudentClassTitleController extends Controller
 
     	return redirect()->route('setups.student.classtitle.view')->with('success','Data Inserted Successfully');
     }
-        
-        public function edit($id){
-            $editdata = ClassTitle::find($id);
-            return view('backend.setup.ClassTitle.add-class-title',compact('editdata'));
-
-        }
+    
 
         public function update(Request $request,$id){
             $data = ClassTitle::find($id);
              $this->validate($request,[
-            'name'=>'unique:class_titles,name,'.$data->id
+            'name'=>'required|unique:class_titles,name,'.$data->id
         ]);
         $data->name = $request->name;
         $data->save();

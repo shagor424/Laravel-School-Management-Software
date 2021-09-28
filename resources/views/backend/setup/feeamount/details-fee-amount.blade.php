@@ -33,17 +33,27 @@
           <!-- Left col -->
           <section class="col-md-12">
            
-           <div class="card">
-              <div class="card-header"style="background-color: #605ca8;color: white;padding: 5px">
+           @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+                   <button  type="button" style="margin-top: -30px;color:white" class="close text-white" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+          @endif
+          <div class="panel"style="background:#C2E7FC;padding-bottom:5px ;border-bottom: 3px solid #7e3796;">
+              <div class="panel-header" style="background-color: #7e3796;color: white;padding: 10px">
                 <h5 ><b>Fee Amount Details</b>
                   <a  href="{{route('feecatams.student.feecatam.view')}}" class="btn btn-warning  float-right"><i class="fa fa-list"> Fee Catagory Amount List</i></a>
                 </h5>
               </div> 
             <div class="card-body">
-              <h4 style="color:  blue "> <strong>Fee Type :</strong> {{$editdata['0']['fee_catagory']['name']}}</h4>
+              <h4 style="color:  blue "> <strong>Fee Type :</strong> {{$editdata['0']['fee_catagory']['cat_name']}}</h4>
                 <table class="table table-sm table-hover">
                   <thead>
-                  <tr style="background-color: #001f3f;color: white;">
+                 <tr style="background-color: #b382dd;">
                     <th>SL</th>
                     <th>Class</th>
                     <th>Fee Catagory</th>
@@ -55,7 +65,7 @@
                     <tr >
                       <td>{{$key+1}}</td>
                       <td style="text-align: left;">{{$feecatam['student_class']['name']}}</td>
-                      <td>{{$feecatam['fee_catagory']['name']}}</td>
+                      <td>{{$feecatam['fee_catagory']['cat_name']}}</td>
                       <td class="text-center">{{$feecatam->amount}}</td>
                       
                     </tr>

@@ -15,11 +15,7 @@ class StudentShiftController extends Controller
     return view('backend.setup.Studentshift.view-shift',$data);
     } 
     
-    public function add(){
-
-    	return view('backend.setup.studentshift.add-shift');
-    }
-    
+  
      public function store(Request $request){
 
         $this->validate($request,[
@@ -34,11 +30,7 @@ class StudentShiftController extends Controller
     	return redirect()->route('shifts.student.shift.view')->with('success','Data Inserted Successfully');
     }
         
-        public function edit($id){
-            $editdata = StudentShift::find($id);
-            return view('backend.setup.studentshift.add-shift',compact('editdata'));
-
-        }
+       
 
         public function update(Request $request,$id){
             $data = StudentShift::find($id);

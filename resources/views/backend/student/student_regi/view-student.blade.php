@@ -33,8 +33,18 @@
           <!-- Left col -->
           <section class="col-md-12">
            
-           <div class="card">
-              <div   class="card-header" style="background-color: #605ca8;color: white;padding: 5px">
+             @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+                   <button  type="button" style="margin-top: -30px;color:white" class="close text-white" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+          @endif
+          <div class="panel"style="background:white;padding-bottom:5px ;border-bottom: 3px solid #7e3796;">
+              <div class="panel-header" style="background-color: #7e3796;color: white;padding: 10px">
                 <h5 ><b>Assign Student List
                   <a  href="{{route('students.regi.add')}}" class="btn btn-warning  float-right"><i class="fa fa-plus-circle"> Add Student</i></a></b>
                 </h5>
@@ -104,7 +114,7 @@
               @if(!@$search)
                 <table id="example1" class="table table-bordered table-hover table-sm">
                   <thead>
-                   <tr style="background-color: #001f3f;color: white"> <!--#ffc107-->
+                  <tr style="background-color: #b382dd;"> <!--#ffc107-->
 
                     <th>SL</th>
                     <th>ID</th>
@@ -118,8 +128,8 @@
                     @if(Auth::user()->role=="Admin")
                     <th>CD</th>
                     @endif
-                    <th>Img</th>
-                    <th width="8%">Action</th>
+                    {{-- <th>Img</th> --}}
+                    <th width="12%">Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -138,18 +148,18 @@
                        @if(Auth::user()->role=="Admin")
                       <td style="width: 5%">{{$student['student']['code']}}</td>
                       @endif
-                       <td style="width: 8%"><img style="width: 50px;height: 60px" 
+                       {{-- <td style="width: 8%"><img style="width: 50px;height: 60px" 
                        src="{{(!empty($student['student']['image']))?url('public/upload/stimage/'.$student['student']['image']):url('public/upload/usernoimage.png')}}"
-                       alt=""></td>
+                       alt=""></td> --}}
                       
                       <td style="width: 8%">
-                      <a target="_blank" title="Details" href="{{route('students.regi.details',$student->student_id)}}" class="btn btn-success btn-sm"><i class="fa fa-download"></i></a>
+                      <a target="_blank" title="Details" href="{{route('students.regi.details',$student->student_id)}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i></a>
 
-                    <a title="Edit" href="{{route('students.regi.edit',$student->student_id)}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                    <a title="Edit" href="{{route('students.regi.edit',$student->student_id)}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
 
-                     <a title="Promotion" href="{{route('students.regi.promotion',$student->student_id)}}" class="btn btn-warning btn-sm"><i class="fa fa-check"></i></a>
+                     <a title="Promotion" href="{{route('students.regi.promotion',$student->student_id)}}" class="btn btn-warning btn-xs"><i class="fa fa-check"></i></a>
 
-                    <a title="Delete" id="delete" href="{{route('students.regi.delete',$student->id)}}" data-token="{{csrf_token()}}" data-id="{{$student->student_id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                    <a title="Delete" id="delete" href="{{route('students.regi.delete',$student->id)}}" data-token="{{csrf_token()}}" data-id="{{$student->student_id}}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
 
                       </td> 
                     </tr>

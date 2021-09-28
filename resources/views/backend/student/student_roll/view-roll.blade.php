@@ -33,8 +33,18 @@
           <!-- Left col -->
           <section class="col-md-12">
            
-           <div class="card">
-              <div  class="card-header" style="background-color: #605ca8;color: white;padding: 5px">
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+                   <button  type="button" style="margin-top: -30px;color:white" class="close text-white" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+          @endif
+          <div class="panel"style="background:white;padding-bottom:5px ;border-bottom: 3px solid #7e3796;">
+              <div class="panel-header" style="background-color: #7e3796;color: white;padding: 10px">
                 <h5><b>Roll Generate</b>
                   
                 </h5>
@@ -107,7 +117,7 @@
                   <div class="col-md-12">
                     <table class="table-sm table-bordered  dt-responsive" style="width: 100%">
                       <thead>
-                        <tr style="background-color: #001f3f;color: white">
+                        <tr style="background-color: #b382dd;">
                           <th>ID</th>
                           <th>Student Name</th>
                           <th>Father Name</th>

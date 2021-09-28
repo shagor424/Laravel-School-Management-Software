@@ -16,15 +16,12 @@ class StudentYearController extends Controller
     return view('backend.setup.studentyear.view-year',$data);
     }
     
-    public function add(){
 
-    	return view('backend.setup.studentyear.add-year');
-    }
     
      public function store(Request $request){
 
         $this->validate($request,[
-            'name'=>'unique:student_years,name'
+            'name'=>'required|unique:student_years,name'
 
         ]);
 
@@ -34,17 +31,11 @@ class StudentYearController extends Controller
 
     	return redirect()->route('years.student.year.view')->with('success','Data Inserted Successfully');
     }
-        
-        public function edit($id){
-            $editdata = StudentYear::find($id);
-            return view('backend.setup.studentyear.add-year',compact('editdata'));
-
-        }
-
+     
         public function update(Request $request,$id){
             $data = StudentYear::find($id);
              $this->validate($request,[
-            'name'=>'unique:student_years,name,'.$data->id
+            'name'=>'required|unique:student_years,name,'.$data->id
         ]);
         $data->name = $request->name;
         $data->save();

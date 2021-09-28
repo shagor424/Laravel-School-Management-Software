@@ -33,8 +33,18 @@
           <!-- Left col -->
           <section class="col-md-12">
            
-           <div class="card">
-              <div class="card-header" style="background-color:   #f1c40f  ">
+           @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+                   <button  type="button" style="margin-top: -30px;color:white" class="close text-white" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+          @endif
+          <div class="panel"style="background:white;padding-bottom:5px ;border-bottom: 3px solid #7e3796;">
+              <div class="panel-header" style="background-color: #7e3796;color: white;padding: 10px">
                 <h5>Invoice No :<strong> {{$payment['invoice']['invoice_no']}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Customer Name :<strong> {{$payment['user']['name']}} </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Invoice Date: <strong>{{date('d-m-Y',strtotime($payment['invoice']['invoice_date']))}}</strong>
                   <a  href="{{route('payments.student.credit')}}" class="btn btn-primary btn-sm float-right"><i class="fa fa-list"><strong style="font-size: 18px"> Student Credit List</strong></i></a>
                
@@ -45,7 +55,7 @@
                                     
                 <table width="100%" class="table table-bordered table-sm" >
                   <tbody>
-                    <tr>
+                   <tr style="background-color: #b382dd;">
                       <th colspan="8" class="text-center" style="font-size: 20px"><h5>Student Information</h5></th>
                     </tr>
                     <tr {{-- style="background-color: #001f3f;color: white" --}}>

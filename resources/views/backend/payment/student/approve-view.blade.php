@@ -33,8 +33,7 @@
           <!-- Left col -->
           <section class="col-md-12">
            
-           <div class="card">
-              <div class="card-header" style="background-color: #605ca8;color: white;padding: 5px">
+           <tr style="background-color: #b382dd;">
                 <h5>Invoice No :<strong> {{$invoice->id}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Student Name :<strong> {{$invoice['payment']['user']['name']}} </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Invoice Date: <strong>{{date('d-m-Y',strtotime($invoice->invoice_date))}}</strong>
                   <a  href="{{route('payments.student.pendinglist')}}" class="btn btn-warning  float-right"><i class="fa fa-list"><strong style="font-size: 18px"> Invoice Pending List</strong></i></a>
                

@@ -42,8 +42,18 @@
           <!-- Left col -->
        <section class="col-md-12">
            
-           <div class="card">
-              <div class="card-header"style="background-color: #605ca8;color: white;padding: 5px">
+           @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+                   <button  type="button" style="margin-top: -30px;color:white" class="close text-white" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+          @endif
+          <div class="panel"style="background:#C2E7FC;padding-bottom:5px ;border-bottom: 3px solid #7e3796;">
+              <div class="panel-header" style="background-color: #7e3796;color: white;padding: 10px">
                 <h5 ><b>
                    @if(isset($editdata))
               Edit Assign Subject
@@ -53,7 +63,7 @@
                   <a  href="{{route('asssubs.student.asssub.view')}}" class="btn btn-warning  float-right"><i class="fa fa-copy"> Assign Subject List</i></a>
                </b> </h5>
               </div> 
-            <div class="card-body" style="background-color:  #C2E7FC  ">
+            <div class="card-body" style="background-color:    ">
              <form method="post" action="{{route('asssubs.student.asssub.store')}}" id="myform">
 
               @csrf
@@ -90,10 +100,10 @@
                    </select>
                   </div>
 
-                </div>
+                
 
-                <div class="form-row">
-                  <div class="form-group col-md-3">
+               
+                  <div class="form-group col-md-4">
                     <label style="color: #0e6251">Subject Name</label>
                    <select name="subject_id[]" class="form-control select2bs4" id="subject_id">
                      <option value="">Select Subject Name</option>
@@ -128,13 +138,14 @@
                    <input  type="text" name="subjective_mark[]" id="subjective_mark"value="{{@$editdata->subjective_mark}}" class="form-control" placeholder=" Subjective Mark" style="color: #2F4F4F">
                     </div>
                   
-                  <div class="form-group col-md-1" style="padding-top: 30px;">
+                  <div class="form-group col-md-2" style="padding-top: 30px;">
                     <span class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i></span>
 
                     
                   </div>
                   
                </div>
+               
 </div>
               
     <button type="submit"class="btn btn-primary">{{(@$editdata)?'Update Assign Subject':'Add Assign Subject'}}</button>
@@ -161,7 +172,7 @@
    <div class="whole_extra_item_add"id="whole_extra_item_add">
      <div class="delete_whole_extra_item_add"id="delete_whole_extra_item_add" >
        <div class="form-row">
-                  <div class="form-group col-md-3">
+                  <div class="form-group col-md-4">
                     <label style="color: #784212">Subject Name</label>
                    <select name="subject_id[]" class="form-control" id="subject_id">
                      <option value="">Select Subject Name</option>
@@ -195,7 +206,7 @@
                    <input  type="text" name="subjective_mark[]" id="subjective_mark"value="{{@$editdata->subjective_mark}}" class="form-control" placeholder="Subjective Mark">
                     </div>
 
-            <div class="form-group col-md-1" style="padding-top: 30px;">
+            <div class="form-group col-md-2" style="padding-top: 30px;">
 
          
       <span class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i></span>

@@ -16,8 +16,11 @@ use DB;
 class StudentFeecatamController extends Controller
 {
     public function view(){
-
+        $data['fee_catagories'] = FeeCatagory::all();
+        $data['student_classes'] = StudentClass::all();
+        $editdata = FeeAmount::all();
     $data['alldata'] = FeeAmount::select('fee_catagory_id')->groupBy('fee_catagory_id')->get();
+     // $data['editdata'] = FeeAmount::orderby('class_id','asc')->get();
     return view('backend.setup.feeamount.view-feecatam',$data);
     } 
     

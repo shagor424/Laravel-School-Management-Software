@@ -37,8 +37,7 @@
           <!-- Left col -->
        <section class="col-md-12">
            
-           <div class="card">
-              <div class="card-header" style="background-color: #605ca8;color: white;padding: 5px">
+            <tr style="background-color: #b382dd;">
                 <h5 ><b>
                  Employee Salary Increment Details Report
                   <a  href="{{route('employees.salary.view')}}" class="btn btn-warning  float-right"><i class="fa fa-list"> Salary Increment List</i></a>
@@ -49,7 +48,7 @@
                   <br/>
                 <table class=" table-sm table table-bordered table-hover">
                   <thead>
-                    <tr style="background-color: #001f3f;color: white">
+                    <tr style="background-color: #b382dd;">
                       <th>SL</th>
                       <th>Employee ID</th>
 

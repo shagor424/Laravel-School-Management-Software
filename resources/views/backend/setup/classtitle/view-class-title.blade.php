@@ -33,16 +33,27 @@
           <!-- Left col -->
           <section class="col-md-12">
            
-           <div class="card">
-              <div class="card-header"style="background-color: #605ca8;color: white;padding: 5px">
-                <h5><b> Class Title List
-                  <a  href="{{route('setups.student.classtitle.add')}}" class="btn btn-warning  float-right"><i class="fa fa-plus-circle"> Add Class Title</i></a></b>
+           
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+                   <button  type="button" style="margin-top: -30px;color:white" class="close text-white" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+          @endif
+          <div class="panel"style="background:white;padding-bottom:5px ;border-bottom: 3px solid #7e3796;">
+              <div class="panel-header" style="background-color: #7e3796;color: white;padding: 10px">
+                <h5><b>Student Class Title List</b>
+                 <button type="button" class="btn btn-warning float-right btn" data-toggle="modal" data-target="#addClassTitle"><i class="fa fa-plus-circle"></i> Add Class</button>
                 </h5>
               </div> 
             <div class="card-body">
                 <table id="example1" class="table-sm table  table-hover">
                   <thead>
-                   <tr style="background-color: #001f3f;color: white">
+                   <tr style="background-color: #b382dd;">
                     <th>SL</th>
                     <th>Class Title ID</th>
                     <th>Class Title Name</th>
@@ -50,17 +61,17 @@
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach($alldata as $key => $classtitle)
-                    <tr class="{{$classtitle->id}}">
+                    @foreach($alldata as $key => $value)
+                    <tr class="{{$value->id}}">
                       <td>{{$key+1}}</td>
-                      <td>{{$classtitle->id}}</td>
+                      <td>{{$value->id}}</td>
                      
-                      <td>{{$classtitle->name}}</td>
-                     
-                  
+                      <td>{{$value->name}}</td>
                       <td>
-                    <a title="Edit" href="{{route('setups.student.classtitle.edit',$classtitle->id)}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                    <a title="Delete" id="delete" href="{{route('setups.student.classtitle.delete',$classtitle->id)}}" data-token="{{csrf_token()}}" data-id="{{$classtitle->id}}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+
+                     <button type="button" class="btn btn-primary  btn-xs" data-toggle="modal" data-target="#editClassTitle-{{ $value->id }}"><i class="fa fa-edit"></i> </button>
+
+                    <a title="Delete" id="delete" href="{{route('setups.student.classtitle.delete',$value->id)}}" data-token="{{csrf_token()}}" data-id="{{$value->id}}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                       </td> 
                     </tr>
                     @endforeach
@@ -81,4 +92,168 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+
+
+  <div class="modal fade" id="addClassTitle" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-small">
+          <div class="modal-content"style="background-color:#d9dad6;border-bottom: 5px solid #7e3796 ;">
+            <div class="modal-header " style="background-color: #7e3796;color: white;padding: 10px">
+              <h4 class="modal-title"> 
+              Add Class Title</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <form method="post" action="{{route('setups.student.classtitle.store')}}" id="myform">
+                @csrf
+
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label > Class Title</label>
+                  </div>
+                  <div class="form-group col-md-9">
+                    <input  type="text" name="name" id="name" class="form-control" placeholder="Enter Class Title Name" style="color: #2F4F4F">
+                    <font style="color:red">{{($errors)->has('name')?($errors->first('name')):''}}</font>
+                  </div>
+                </div>
+              <div class="modal-footer col-md-12">
+                 <button type="button" class="btn btn-danger pull-right"  data-dismiss="modal">Close</button>
+               <button type="submit"class="btn btn-primary">Add Class Title</button>
+            </div>
+
+            </form>
+            </div>
+           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- end Add Category -->
+</div>
+
+
+@foreach($alldata as $value)
+ {{-- Add Class --}}
+
+  <div class="modal fade" id="editClassTitle-{{ $value->id }}" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-small">
+          <div class="modal-content"style="background-color:#d9dad6;border-bottom: 5px solid #7e3796 ;">
+            <div class="modal-header " style="background-color: #7e3796;color: white;padding: 10px">
+              <h4 class="modal-title"> 
+              Edit Class Title</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <form method="post" action="{{route('setups.student.classtitle.update',$value->id)}}" id="myforma">
+                @csrf
+
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label > Class Title</label>
+                  </div>
+                  <div class="form-group col-md-9">
+                    <input  type="text" name="name" id="name"value="{{$value->name}}" class="form-control" placeholder="Enter Class Title Name" style="color: #2F4F4F">
+                    <font style="color:red">{{($errors)->has('name')?($errors->first('name')):''}}</font>
+                  </div>
+                </div>
+              <div class="modal-footer col-md-12">
+                 <button type="button" class="btn btn-danger pull-right"  data-dismiss="modal">Close</button>
+               <button type="submit"class="btn btn-primary">Update Class Title</button>
+            </div>
+
+            </form>
+            </div>
+           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- end Add Category -->
+</div>
+
+@endforeach
+
+<script>
+$(function () {
+  
+  $('#myform').validate({
+    rules: {
+
+     
+      name: {
+        required: true,
+        
+     
+        
+      }
+    },
+    messages: {
+     
+
+      name: {
+        required: "Please Enter Class Title",
+        
+      },
+      
+      
+     
+   
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
+});
+</script>
+
+<script>
+$(function () {
+  
+  $('#myforma').validate({
+    rules: {
+
+     
+      name: {
+        required: true,
+        
+     
+        
+      }
+    },
+    messages: {
+     
+
+      name: {
+        required: "Please Enter Class Title",
+        
+      },
+      
+      
+     
+   
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
+});
+</script> Title
   @endsection

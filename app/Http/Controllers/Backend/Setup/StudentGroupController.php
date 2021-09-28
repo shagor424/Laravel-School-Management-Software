@@ -15,15 +15,12 @@ class StudentGroupController extends Controller
     return view('backend.setup.Studentgroup.view-group',$data);
     }
     
-    public function add(){
-
-    	return view('backend.setup.studentgroup.add-group');
-    }
+  
     
      public function store(Request $request){
 
         $this->validate($request,[
-            'name'=>'unique:student_groups,name'
+            'name'=>'required|unique:student_groups,name'
 
         ]);
 
@@ -34,16 +31,12 @@ class StudentGroupController extends Controller
     	return redirect()->route('groups.student.group.view')->with('success','Data Inserted Successfully');
     }
         
-        public function edit($id){
-            $editdata = StudentGroup::find($id);
-            return view('backend.setup.studentgroup.add-group',compact('editdata'));
-
-        }
+   
 
         public function update(Request $request,$id){
             $data = StudentGroup::find($id);
              $this->validate($request,[
-            'name'=>'unique:student_groups,name,'.$data->id
+            'name'=>'required|unique:student_groups,name,'.$data->id
         ]);
         $data->name = $request->name;
         $data->save();

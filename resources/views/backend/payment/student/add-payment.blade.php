@@ -33,8 +33,18 @@
 
           <section class="col-md-12 offset-md-0">
            
-           <div class="card">
-              <div class="card-header"  style="background-color: #605ca8;color: white;padding: 5px">
+           @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+                   <button  type="button" style="margin-top: -30px;color:white" class="close text-white" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+          @endif
+          <div class="panel"style="background:white;padding-bottom:5px ;border-bottom: 3px solid #7e3796;">
+              <div class="panel-header" style="background-color: #7e3796;color: white;padding: 10px">
                 <h5 style="color: white">Add Student Payment
                   <a  href="{{route('payments.student.view')}}" class="btn btn-warning  float-right"><i class="fa fa-list"> Payment List</i></a>
                 </h5>
@@ -203,7 +213,7 @@
     @csrf
     <table class="table table-bordered table-sm" width="100%">
       <thead>
-        <tr style="background-color: #001f3f;color: white">
+       <tr style="background-color: #b382dd;">
           <th width="30%">Name</th>
           <th width="18%">Fee Category</th>
           <th width="5%" class="text-center">Time</th>
