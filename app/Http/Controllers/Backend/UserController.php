@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\backend;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Model\Role;
 use Auth;
-class usercontroller extends Controller
+class UserController extends Controller
 {
     public function view(){
     $data['roles'] = Role::all();

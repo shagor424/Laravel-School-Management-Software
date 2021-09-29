@@ -60,12 +60,12 @@
               @else
               Add Student
               @endif
-                  <a  href="{{route('students.regi.view')}}" class="btn btn-warning  float-right"><i class="fa fa-list"> Student List</i></a>
+                  <a  href="{{route('students.regi.views')}}" class="btn btn-warning  float-right"><i class="fa fa-list"> Student List</i></a>
                </b> </h5>
               </div> 
             <div class="card-body" style="background-color:#E6E6E6">
                 
-              <form method="post" action="{{(@$editdata)?route('students.regi.update',$editdata->student_id):route('students.regi.store')}}" id="myform"enctype="multipart/form-data">
+              <form method="post" action="{{(@$editdata)?route('students.regi.update',$editdata->student_id):route('students.regi.stores')}}" id="myform"enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="id" value="{{@$editdata->id}}">
                 <div class="form-row">

@@ -46,11 +46,11 @@
           <div class="panel"style="background:white;padding-bottom:5px ;border-bottom: 3px solid #7e3796;">
               <div class="panel-header" style="background-color: #7e3796;color: white;padding: 10px">
                 <h5 ><b>Assign Student List
-                  <a  href="{{route('students.regi.add')}}" class="btn btn-warning  float-right"><i class="fa fa-plus-circle"> Add Student</i></a></b>
+                  <a  href="{{route('students.regi.adds')}}" class="btn btn-warning  float-right"><i class="fa fa-plus-circle"> Add Student</i></a></b>
                 </h5>
               </div> 
               <div class="card-body"style="background-color:#E6E6E6">
-                <form method="get" action="{{route('students.stsearch')}}" id="myform">
+                <form method="get" action="{{route('students.stsearchs')}}" id="myform">
                   <div  class="form-row">
                     
                     <div class="form-group col-md-2">

@@ -11,21 +11,50 @@
 |
 */ 
 
-Route::get('/logout', 'LogoutController@logout')->name('logout');
+Route::post('/logout', 'LogoutController@logout')->name('logout');
+Route::post('/login', 'Auth\LoginController@login')->name('login');
+
 
 Route::get('/', function () {
     return view('welcome');
 });
  
-Auth::routes();
+  Route::group(['prefix'=>'teacher','middleware'=>['teacherauth','auth'],'namespace'=>'teacher'],function(){ 
+    Route::get('dashboard', 'TeacherController@dashboard')->name('teacher.dashboard');
+    // =====================Profile Section============
+        Route::get('/profile-view','TeacherProfileController@view')->name('teacher.profiles.view');
+    Route::post('/profile-update','TeacherProfileController@update')->name('teacher.profiles.update');
+    Route::post('/password/update','TeacherProfileController@passwordupdate')->name('teacher.profiles.password.update');
 
-Route::get('/home', 'HomeController@index')->name('home');
+});
 
-Route::group(['middleware'=>'auth'],function(){
+    Route::group(['prefix'=>'parent','middleware'=>['parentauth','auth'],'namespace'=>'parent'],function(){ 
+    Route::get('dashboard', 'ParentController@dashboard')->name('parent.dashboard');
+    // =====================Profile Section============
+        Route::get('/profile-view','ParentProfileController@view')->name('parent.profiles.view');
+    Route::post('/profile-update','ParentProfileController@update')->name('parent.profiles.update');
+    Route::post('/password/update','ParentProfileController@passwordupdate')->name('parent.profiles.password.update');
 
-Route::prefix('users')->group(function(){
+});
+
+        Route::group(['prefix'=>'student','middleware'=>['studentauth','auth'],'namespace'=>'student'],function(){ 
+    Route::get('dashboard', 'StudentController@dashboard')->name('student.dashboard');
+    // =====================Profile Section============
+        Route::get('/profile-view','StudentProfileController@view')->name('student.profiles.view');
+    Route::post('/profile-update','StudentProfileController@update')->name('student.profiles.update');
+    Route::post('/password/update','StudentProfileController@passwordupdate')->name('student.profiles.password.update');
+
+});
+
+ Route::group(['prefix'=>'admin','middleware'=>['adminauth','auth'],'namespace'=>'admin'],function(){ 
+    Route::get('dashboard', 'AdminController@dashboard')->name('home');
+    // =====================Profile Section============
+        Route::get('/profile-view','AdminProfileController@view')->name('admin.profiles.view');
+    Route::post('/profile-update','AdminProfileController@update')->name('admin.profiles.update');
+    Route::post('/password/update','AdminProfileController@passwordupdate')->name('admin.profiles.password.update');
+
 	Route::get('/view','Backend\UserController@view')->name('users.view');
-	Route::get('/add','Backend\UserController@add')->name('users.add')->middleware('login');
+	Route::get('/add','Backend\UserController@add')->name('users.add');
 	Route::post('/store','Backend\UserController@store')->name('users.store');
 	Route::get('/edit/{id}','Backend\UserController@edit')->name('users.edit');
 	Route::post('/update/{id}','Backend\UserController@update')->name('users.update');
@@ -34,18 +63,15 @@ Route::prefix('users')->group(function(){
 	Route::get('/delete/{id}','Backend\UserController@delete')->name('users.delete');
 
     
-}); 
+
  
  // profiles
-    Route::get('/profile-view','admin\AdminProfileController@view')->name('admin.profiles.view');
-    Route::post('/profile-update','admin\AdminProfileController@update')->name('admin.profiles.update');
-    Route::post('/password/update','admin\AdminProfileController@passwordupdate')->name('admin.profiles.password.update');
 
 
 
   // setups class
 
-  Route::prefix('setups')->group(function(){
+
 	Route::get('/student/class/view','Backend\Setup\StudentClassController@view')->name('setups.student.class.view');
 	Route::get('/student/class/add','Backend\Setup\StudentClassController@add')->name('setups.student.class.add');
 	Route::post('/student/class/store','Backend\Setup\StudentClassController@store')->name('setups.student.class.store');
@@ -163,17 +189,17 @@ Route::get('/student/section/delete/{id}','Backend\Setup\StudentSctionController
 
 
 
-});
+
 
 // student registration
 
-Route::prefix('students')->group(function(){
-    Route::get('regi/view','Backend\Student\StudentRegiController@view')->name('students.regi.view');
-    Route::get('regi/add','Backend\Student\StudentRegiController@add')->name('students.regi.add')->middleware('login');
-    Route::post('regi/store','Backend\Student\StudentRegiController@store')->name('students.regi.store');
+    Route::get('regi/views','Backend\Student\StudentRegiController@view')->name('students.regi.views');
+   
+    Route::get('regi/adds','Backend\Student\StudentRegiController@add')->name('students.regi.adds');
+    Route::post('regi/stores','Backend\Student\StudentRegiController@store')->name('students.regi.stores');
     Route::get('regi/editregi/{student_id}','Backend\Student\StudentRegiController@edit')->name('students.regi.edit');
     Route::post('regi/updateregi/{student_id}','Backend\Student\StudentRegiController@update')->name('students.regi.update');
-    Route::get('stsearch','Backend\Student\StudentRegiController@stsearch')->name('students.stsearch');
+    Route::get('stsearchs','Backend\Student\StudentRegiController@stsearch')->name('students.stsearchs');
     Route::get('regi/promotion/{student_id}','Backend\Student\StudentRegiController@promotion')->name('students.regi.promotion');
     Route::post('regi/promotion/store/{student_id}','Backend\Student\StudentRegiController@promotionstore')->name('students.regi.promotion.store');
 
@@ -212,10 +238,9 @@ Route::prefix('students')->group(function(){
     Route::get('absent/fee/getsabsentfee','Backend\Student\StudentAbsentFeeController@getsabsentfee')->name('students.absentfee.getsabsentfee');
     Route::get('absent/fee/payslip','Backend\Student\StudentAbsentFeeController@absentpayslip')->name('students.absentfee.payslip'); 
 
-});
 
         // Student Payment
-Route::prefix('payments')->group(function(){
+
     Route::get('payments/student/view','Backend\Payment\StudentPaymentController@viewpayment')->name('payments.student.view');
     Route::get('payments/student/add','Backend\Payment\StudentPaymentController@addpayment')->name('payments.student.add');
     Route::post('payments/student/store','Backend\Payment\StudentPaymentController@storepayment')->name('payments.student.store');
@@ -246,14 +271,14 @@ Route::prefix('payments')->group(function(){
 Route::get('daily/invoice/report', 'backend\Payment\StudentPaymentController@dailyreportpdf')->name('payments.student.daily-report-pdf');
 Route::get('/invoice/daily/report', 'backend\Payment\StudentPaymentController@dailyreport')->name('payments.student.daily-report');
 
-});
+
             // employee
 
-    Route::prefix('employees')->group(function(){
+    
 
 //        employee regi
     Route::get('regi/view','Backend\Employee\EmployeeRegiController@view')->name('employees.regi.view');
-    Route::get('regi/add','Backend\Employee\EmployeeRegiController@add')->name('employees.regi.add')->middleware('login');
+    Route::get('regi/add','Backend\Employee\EmployeeRegiController@add')->name('employees.regi.add');
     Route::post('regi/store','Backend\Employee\EmployeeRegiController@store')->name('employees.regi.store');
     Route::get('regi/editregi/{id}','Backend\Employee\EmployeeRegiController@edit')->name('employees.regi.edit');
     Route::post('regi/updateregi/{id}','Backend\Employee\EmployeeRegiController@update')->name('employees.regi.update');
@@ -301,10 +326,10 @@ Route::get('/invoice/daily/report', 'backend\Payment\StudentPaymentController@da
     Route::get('monthly/salary/get','Backend\Employee\EmployeeMonthlySalaryController@getsalary')->name('employees.monthlysalary.getsalary');
     Route::get('monthly/salary/payslip/{employee_id}','Backend\Employee\EmployeeMonthlySalaryController@payslip')->name('employees.monthlysalary.payslip');
 
-});
+
 
     //marks 
-     Route::prefix('marks')->group(function(){
+     
 
     Route::get('marks/add','Backend\Marks\StudentMarksController@add')->name('marks.add');
      Route::post('marks/store','Backend\Marks\StudentMarksController@store')->name('marks.store');
@@ -330,7 +355,6 @@ Route::get('/invoice/daily/report', 'backend\Payment\StudentPaymentController@da
 
 
 
-});
 
 
 
@@ -339,7 +363,7 @@ Route::get('/invoice/daily/report', 'backend\Payment\StudentPaymentController@da
 
 
 
-  Route::prefix('accounts')->group(function(){
+ 
 //marks grade
      Route::get('student/fee/view','Backend\account\StudentFeeController@view')->name('accounts.fee.view');
      Route::get('student/fee/add','Backend\account\StudentFeeController@add')->name('accounts.fee.add');
@@ -363,10 +387,9 @@ Route::get('/invoice/daily/report', 'backend\Payment\StudentPaymentController@da
      Route::post('cost/update/{id}','Backend\account\OtherCostController@update')->name('accounts.cost.update');
       Route::get('cost/delete/{id}','Backend\account\OtherCostController@delete')->name('accounts.cost.delete');
 
-});
 
 //marks Sheet
-    Route::prefix('marksheets')->group(function(){
+    
 
       Route::get('marksheet/view','Backend\marksheet\MarkSheetController@marksheetview')->name('marksheets.marksheet.view');
        Route::get('marksheet/get','Backend\marksheet\MarkSheetController@marksheetget')->name('marksheets.marksheet.get');
@@ -375,14 +398,14 @@ Route::get('/invoice/daily/report', 'backend\Payment\StudentPaymentController@da
        Route::get('resultsheet/view','Backend\marksheet\MarkSheetController@resultsheetview')->name('marksheets.resultsheet.view');
        Route::get('resultsheet/get','Backend\marksheet\MarkSheetController@resultsheetget')->name('marksheets.resultsheet.get');
 
-});
+
        //attendace Report
-        Route::prefix('stuffattendances')->group(function(){
+    
      Route::get('attendance/view','Backend\marksheet\MarkSheetController@attendanceview')->name('stuffattendances.attendance.view');
        Route::get('attendance/get','Backend\marksheet\MarkSheetController@attendanceget')->name('stuffattendances.attendance.get');
 
 
-});
+
 
         Route::get('/get-category', 'backend\DefaultController@getcategory')->name('get-category');
 Route::get('/get-subcategory', 'backend\DefaultController@subgetcategory')->name('get-subcategory');
@@ -404,8 +427,10 @@ Route::get('/get-name', 'backend\DefaultController@getname')->name('get-name');
 Route::get('/get-fname', 'backend\DefaultController@getfname')->name('get-fname');
 Route::get('/get-mname', 'backend\DefaultController@getmname')->name('get-mname');
 Route::get('/get-mobile', 'backend\DefaultController@getmobile')->name('get-mobile');
+
 });
 
+Auth::routes();
 
-
+Route::get('/home', 'HomeController@index')->name('homeview');
 

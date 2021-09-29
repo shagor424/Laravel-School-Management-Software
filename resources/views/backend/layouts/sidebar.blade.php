@@ -180,7 +180,7 @@ $route = Route::current()->getName();
 
             <ul type="background-color" class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('students.regi.view')}}" class="nav-link {{($route=='students.regi.view')?'active':''}}">
+                <a href="{{route('students.regi.views')}}" class="nav-link {{($route=='students.regi.views')?'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Student Registrtion</p> 
                 </a>
